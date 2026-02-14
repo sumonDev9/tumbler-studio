@@ -11,6 +11,7 @@
 @section('content')
 
 @include('components.about.our-strength')
+@include('components.about.our-values')
 
 
 
