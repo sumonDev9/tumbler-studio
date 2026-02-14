@@ -11,11 +11,4 @@
 @include('components.service.post-production')
 @include('components.service.coProduction')
 
-
-
-
-
-
-
-
 @endsection

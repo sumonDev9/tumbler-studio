@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/about-us', function () {
+    return view('page.about-us');
+});
 
 Route::get('/career', function () {
     return view('page.career');
