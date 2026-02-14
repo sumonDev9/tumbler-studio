@@ -13,3 +13,11 @@ Route::get('/career', function () {
 Route::get('/contact-us', function () {
     return view('page.contact-us');
 });
+
+Route::get('/blogs', function () {
+    return view('page.blogs');
+});
+
+Route::get('/loginn', function () {
+    return view('page.loginn');
+});

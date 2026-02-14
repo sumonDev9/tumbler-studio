@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Tumbler Studio – Career')
+@section('page_title', 'Career')
 @section('breadcrumb', 'Career')
 
 @section('content')

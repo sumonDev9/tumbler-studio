@@ -75,7 +75,7 @@
     </div>
 </footer>
 
-<div class="bg-white py-6 text-center" data-aos="fade-in" data-aos-delay="800">
+<div class="bg-white py-6 text-center">
     <p class="text-sm font-semibold text-gray-800">
         © 2026 Tumbler Studios. All Rights Reserved. Design and Development By
         Insu Creation Private Limited
