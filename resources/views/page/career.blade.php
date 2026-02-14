@@ -5,6 +5,7 @@
 @section('content')
 
 @include('components.career.open-positions')
+@include('components.career.job-details')
 
 
 
