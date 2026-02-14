@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Biryani", sans-serif;
+}
+
+.text-beiruti {
+    font-family: "Beiruti", sans-serif;
+}
+
+.text-barlow {
+    font-family: "Barlow", sans-serif;
+}
+
+/* bannar */
+.clip-arrow {
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+}
+
+/* For the first item (Home) to be flat on the left */
+.clip-arrow-start {
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+}
+
+/* phone start */
+/* Adjusting intl-tel-input to match Tailwind design */
+.iti {
+    width: 100%;
+}
+
+.iti__input {
+    height: 48px;
+    border-radius: 9999px !important;
+    border-color: #C084FC !important;
+}
+
+/* home page */
+/* Marquee Animation Customization */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+}
+
+.rotate-banner-1 {
+    transform: rotate(-3deg) scale(1.05);
+}
+
+.rotate-banner-2 {
+    transform: rotate(7deg) scale(1.05);
+}
+
+/* /-rotate-12 md:-rotate-6 */
+.swiper-button-next,
+.swiper-button-prev {
+    top: 40% !important;
+    /* Adjust height position */
+}
+
+/* Ensure they are visible on mobile */
+@media (max-width: 640px) {
+    .testimonialSwiper {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
