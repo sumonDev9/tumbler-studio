@@ -21,3 +21,7 @@ Route::get('/blogs', function () {
 Route::get('/loginn', function () {
     return view('page.loginn');
 });
+
+Route::get('/portfolio', function () {
+    return view('page.portfolio');
+});
