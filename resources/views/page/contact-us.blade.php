@@ -11,6 +11,7 @@
 @section('content')
 
 @include('components.contact.contact-section')
+@include('components.contact.google-map')
 
 
 

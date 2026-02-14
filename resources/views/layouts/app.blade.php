@@ -70,7 +70,7 @@
     </main>
 
     <!-- footer -->
- 
+    @include('partials.footer')
 
     <!-- JS FILES (Loaded at bottom for FAST RENDERING) -->
 
