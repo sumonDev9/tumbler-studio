@@ -10,6 +10,7 @@
 
 @section('content')
 
+@include('components.contact.contact-section')
 
 
 
