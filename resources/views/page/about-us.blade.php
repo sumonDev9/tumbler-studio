@@ -13,6 +13,7 @@
 @include('components.about.our-strength')
 @include('components.about.our-values')
 @include('components.about.our-mission')
+@include('components.about.our-vision-gallery')
 
 
 

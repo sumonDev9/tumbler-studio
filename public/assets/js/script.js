@@ -52,3 +52,24 @@ function togglePassword() {
         toggleIcon.classList.add('fa-eye-slash');
     }
 }
+
+// about vision
+document.addEventListener('DOMContentLoaded', function () {
+    new Swiper(".gallerySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: true,
+        navigation: {
+            nextEl: ".next-btn",
+            prevEl: ".prev-btn",
+        },
+        breakpoints: {
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+    });
+});
