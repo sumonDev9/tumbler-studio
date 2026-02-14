@@ -8,6 +8,7 @@
 
 @include('components.service.pre-production')
 @include('components.service.production')
+@include('components.service.post-production')
 
 
 
