@@ -4,6 +4,7 @@
 @section('content')
 
 @include('components.home.story-tellers')
+@include('components.home.home-service')
 
 
 

@@ -1,4 +1,4 @@
-<section class="relative z-20 w-full min-h-screen md:min-h-[60vh] lg:min-h-screen overflow-hidden text-white" 
+<section class="relative z-50 w-full min-h-screen md:min-h-[60vh] lg:min-h-screen overflow-hidden text-white" 
     style="
         background-image: url('{{ asset('assets/image/home/Group 179.png') }}');
         background-size: cover;
