@@ -1,0 +1,94 @@
+<section class="relative z-20 w-full min-h-screen md:min-h-[60vh] lg:min-h-screen overflow-hidden text-white" 
+    style="
+        background-image: url('{{ asset('assets/image/home/Group 179.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    ">
+    
+    <nav id="main-nav"
+        class="fixed top-0 left-0 w-full px-6 py-4 flex justify-between items-center z-50 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center w-full">
+            <div class="flex items-center gap-2">
+                <div class="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+                    <img src="{{ asset('assets/image/home/logo.png') }}" alt="Logo" />
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide uppercase">
+                <a href="{{ url('/') }}" class="hover:text-yellow-300 transition">Home</a>
+                <a href="{{ url('/about-us') }}" class="hover:text-yellow-300 transition">About Us</a>
+                <a href="{{ url('/services') }}" class="hover:text-yellow-300 transition">Services</a>
+                <a href="{{ url('/portfolio') }}" class="hover:text-yellow-300 transition relative">
+                    Portfolio
+                    <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3"
+                            stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </a>
+                <a href="{{ url('/career') }}" class="hover:text-yellow-300 transition">Careers</a>
+                <a href="{{ url('/blog') }}" class="hover:text-yellow-300 transition">Blog</a>
+                <a href="{{ url('/contact-us') }}" class="hover:text-yellow-300 transition">Contact Us</a>
+            </div>
+
+            <a href="{{ url('/contact-us') }}"
+                class="hidden relative md:flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform">
+                <div class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
+                    <img src="{{ asset('assets/image/home/Group 1.png') }}" alt="icon" />
+                </div>
+                GET IN TOUCH
+            </a>
+
+            <button id="menu-toggle" class="lg:hidden text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div data-aos="fade-up" data-aos-duration="1000"
+        class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between mt-20 md:mt-16 relative z-10 pb-32">
+
+        <div class="w-full md:w-1/2 text-center md:text-left space-y-6">
+            <h1 data-aos="fade-right" data-aos-delay="200"
+                class="text-4xl lg:text-5xl 2xl:text-6xl font-bold leading-tight text-barlow">
+                The <span class="text-rose-500">Tumbler studios</span> <br>
+                Behind Exceptional <br>
+                Design Products
+            </h1>
+
+            <div class="flex flex-col md:flex-row items-center gap-4 mt-8 justify-center md:justify-start">
+                <div data-aos="zoom-in" data-aos-delay="400" class="relative group cursor-pointer">
+                    <div class="absolute inset-0 w-16 h-16 bg-rose-500 rounded-full animate-ping opacity-20 group-hover:duration-300"></div>
+                    <div class="w-16 h-16 bg-rose-500 rounded-full flex items-center justify-center shadow-lg shadow-rose-500/50 relative z-10 transition-transform duration-300 group-hover:scale-110 active:scale-95">
+                        <i class="fa-solid fa-play text-white text-xl ml-1 group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                    <div class="absolute -top-2 -left-2 w-20 h-20 border-2 border-dashed border-rose-400/50 rounded-full animate-spin-slow group-hover:border-rose-500 transition-colors duration-500"></div>
+                </div>
+
+                <p data-aos="fade-left" data-aos-delay="600" class="text-xl md:text-2xl font-semibold italic">
+                    Turning Ideas into Living Stories. <i class="fa-solid fa-quote-right text-4xl lg:-mt-4 align-top"></i>
+                </p>
+            </div>
+        </div>
+
+        <div data-aos="fade-left" data-aos-duration="1200" data-aos-delay="300"
+            class="w-full md:w-1/2 flex justify-center md:justify-end mt-12 md:mt-14 2xl:mt-20 relative">
+            <img src="{{ asset('assets/image/home/Group 178.png') }}" alt="Banner Image">
+        </div>
+    </div>
+
+    <div id="mobile-drawer"
+        class="fixed inset-0 bg-black/95 z-[100] flex flex-col items-center justify-center space-y-6 text-xl font-bold transition-transform duration-300 translate-x-full lg:hidden">
+        <button id="close-drawer" class="absolute top-8 right-8 text-3xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <a href="{{ url('/') }}" class="hover:text-yellow-400">Home</a>
+        <a href="{{ url('/about-us') }}" class="hover:text-yellow-400">About Us</a>
+        <a href="{{ url('/services') }}" class="hover:text-yellow-400">Services</a>
+        <a href="{{ url('/portfolio') }}" class="hover:text-yellow-400">Portfolio</a>
+        <a href="{{ url('/career') }}" class="hover:text-yellow-400">Careers</a>
+        <a href="{{ url('/blog') }}" class="hover:text-yellow-400">Blog</a>
+        <a href="{{ url('/contact-us') }}" class="hover:text-yellow-400">Contact Us</a>
+    </div>
+</section>

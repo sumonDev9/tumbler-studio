@@ -53,7 +53,7 @@
                             <img class="w-full h-[350px] object-cover" src="{{ asset('assets/image/home/ph3.png') }}" alt="Gallery 3" />
                         </div>
                     </div>
-                    </div>
+                </div>
 
                 <div class="flex justify-center gap-4 mt-10">
                     <button class="prev-btn w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-800 shadow-lg hover:bg-gray-200 transition-all z-30">
