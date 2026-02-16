@@ -78,17 +78,31 @@
         </div>
     </div>
 
-    <div id="mobile-drawer"
-        class="fixed inset-0 bg-black/95 z-[100] flex flex-col items-center justify-center space-y-6 text-xl font-bold transition-transform duration-300 translate-x-full lg:hidden">
-        <button id="close-drawer" class="absolute top-8 right-8 text-3xl">
+<div id="mobile-drawer"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] transition-all duration-500 opacity-0 pointer-events-none lg:hidden">
+    
+    <div id="drawer-content" 
+        class="absolute top-0 right-0 w-[280px] h-full bg-gradient-to-b from-[#1a1a1a] to-black p-8 flex flex-col space-y-6 text-white shadow-2xl transform translate-x-full transition-transform duration-500 border-l border-white/10">
+        
+        <button id="close-drawer" class="self-end text-3xl text-white/70 hover:text-red-500 transition-colors">
             <i class="fa-solid fa-xmark"></i>
         </button>
-        <a href="{{ url('/') }}" class="hover:text-yellow-400">Home</a>
-        <a href="{{ url('/about-us') }}" class="hover:text-yellow-400">About Us</a>
-        <a href="{{ url('/services') }}" class="hover:text-yellow-400">Services</a>
-        <a href="{{ url('/portfolio') }}" class="hover:text-yellow-400">Portfolio</a>
-        <a href="{{ url('/career') }}" class="hover:text-yellow-400">Careers</a>
-        <a href="{{ url('/blog') }}" class="hover:text-yellow-400">Blog</a>
-        <a href="{{ url('/contact-us') }}" class="hover:text-yellow-400">Contact Us</a>
+
+        <nav class="flex flex-col space-y-4 pt-4">
+            <a href="{{ url('/') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Home</a>
+            <a href="{{ url('/about-us') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">About Us</a>
+            <a href="{{ url('/services') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Services</a>
+            <a href="{{ url('/portfolio') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Portfolio</a>
+            <a href="{{ url('/career') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Careers</a>
+            <a href="{{ url('/blog') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Blog</a>
+            <a href="{{ url('/contact-us') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Contact Us</a>
+        </nav>
+
+        <div class="pt-8">
+            <a href="#" class="block text-center bg-gradient-to-r from-[#FE3668] to-[#CF0037] py-3 rounded-full font-bold shadow-lg">
+                GET IN TOUCH
+            </a>
+        </div>
     </div>
+</div>
 </section>
