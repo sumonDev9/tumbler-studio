@@ -14,7 +14,9 @@
 @include('components.about.our-values')
 @include('components.about.our-mission')
 @include('components.about.our-vision-gallery')
-
+<div class="pt-32">
+    @include('partials.trusted-brands') 
+</div>
 
 
 
