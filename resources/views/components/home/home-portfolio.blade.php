@@ -1,5 +1,5 @@
 <section class="relative py-16 overflow-hidden">
-
+    <img src="{{ asset('assets/image/home/chele1.webp') }}" class="absolute bottom-0 object-contain h-60 right-40 2xl:right-60 hidden lg:block" alt="">
     <div class="absolute inset-0 -z-10 hidden pointer-events-none md:flex items-center justify-center">
         <div class="w-full aspect-[16/9]">
             <img src="{{ asset('assets/image/home/XMLID_18_.png') }}" alt="Background Shape" class="w-full h-full opacity-90">
