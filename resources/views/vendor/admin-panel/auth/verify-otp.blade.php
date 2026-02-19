@@ -24,20 +24,21 @@
 
     <div class="container mx-auto px-4 relative z-10 flex flex-col items-center">
         
-        {{-- Success/Error Messages --}}
-        <div id="resend-success" class="hidden w-full max-w-lg mb-6 p-4 rounded-xl bg-green-50 border-l-4 border-green-500 text-green-700 text-center shadow-sm">
+        {{-- Success Message for Resend (With transition) --}}
+        <div id="resend-success" class="hidden w-full max-w-lg mb-6 p-4 rounded-xl bg-green-50 border-l-4 border-green-500 text-green-700 text-center shadow-sm transition-opacity duration-500">
             New OTP sent successfully!
         </div>
 
+        {{-- Validation Errors (With ID for timeout) --}}
         @if ($errors->any())
-            <div class="w-full max-w-lg mb-6 p-4 rounded-xl bg-red-50 border-l-4 border-red-500 text-red-700 shadow-sm">
+            <div id="error-alert" class="w-full max-w-lg mb-6 p-4 rounded-xl bg-red-50 border-l-4 border-red-500 text-red-700 shadow-sm transition-opacity duration-500">
                 <ul class="list-disc list-inside text-sm">
                     @foreach ($errors->all() as $error) <li>{{ $error }}</li> @endforeach
                 </ul>
             </div>
         @endif
 
-        {{-- Mascot Image (Login owl used for consistency) --}}
+        {{-- Mascot Image --}}
         <div class="relative z-30 -mb-12 md:-mb-16 mx-auto w-48 md:w-72 lg:w-80 transition-all duration-300"
             data-aos="zoom-in" data-aos-delay="300">
             <img class="w-full h-auto object-contain mx-auto" src="{{ asset('assets/image/login/owl.png') }}" alt="Mascot" />
@@ -129,12 +130,29 @@
         }, 1000);
     }
 
-    // Start timer on page load
     startTimer();
+
+    // Timeout logic for Success and Error messages
+    function applyTimeout(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            setTimeout(() => {
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    element.classList.add('hidden');
+                    element.style.opacity = '1'; // Reset opacity for next time
+                }, 500);
+            }, 5000);
+        }
+    }
+
+    // Apply to initial errors if they exist
+    if (document.getElementById('error-alert')) {
+        applyTimeout('error-alert');
+    }
 
     resendLink.addEventListener('click', async (e) => {
         e.preventDefault();
-
         resendLink.classList.add('hidden');
         sendingMsg.classList.remove('hidden');
         successMsg.classList.add('hidden');
@@ -153,6 +171,7 @@
                 successMsg.classList.remove('hidden');
                 sendingMsg.classList.add('hidden');
                 startTimer();
+                applyTimeout('resend-success'); // Apply timeout to new success message
             } else {
                 alert('Failed to resend OTP. Please try again.');
                 resendLink.classList.remove('hidden');
@@ -166,7 +185,6 @@
         }
     });
 
-    // Auto-focus logic for better UX
     const otpInput = document.getElementById('otp');
     otpInput.addEventListener('input', function() {
         this.value = this.value.replace(/[^0-9]/g, '');
@@ -174,14 +192,12 @@
 </script>
 
 <style>
-    /* Custom spacing for the OTP characters */
     #otp::placeholder {
         letter-spacing: normal;
         font-size: 1.5rem;
         color: #d1d5db;
         opacity: 0.5;
     }
-    
     input#otp:focus {
         border-color: #c084fc;
         background-color: #fff;

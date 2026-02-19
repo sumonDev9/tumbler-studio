@@ -27,7 +27,7 @@
     <div class="container mx-auto px-4 relative z-10 flex flex-col items-center">
         
         {{-- Global Error Container --}}
-        <div id="global-error" class="hidden w-full max-w-lg mb-6 p-4 rounded-xl bg-red-50 border-l-4 border-red-500 shadow-sm transition-all duration-300">
+        <div id="global-error" class="hidden w-full max-w-lg mb-6 p-4 rounded-xl bg-red-50 border-l-4 border-red-500 shadow-sm transition-all duration-500">
             <div class="flex items-center mb-2">
                 <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
@@ -92,7 +92,7 @@
                     <p class="input-error text-xs text-red-500 mt-1 ml-4 hidden" id="error-password"></p>
                 </div>
 
-                {{-- Captcha Field (New) --}}
+                {{-- Captcha Field --}}
                 <div class="bg-purple-50/50 p-4 rounded-3xl border border-purple-100 shadow-inner">
                     <div class="flex flex-col space-y-3">
                         <div class="flex items-center gap-2 bg-white p-2 rounded-full border border-purple-200">
@@ -132,13 +132,12 @@
                     </button>
                 </div>
 
-                        <p class="mt-8 text-center text-sm text-gray-600 relative z-20">
-            Not a member? 
-            <a href="{{ route('register') }}" class="font-bold text-purple-600 hover:underline">Register now</a>
-        </p>
+                <p class="mt-8 text-center text-sm text-gray-600 relative z-20">
+                    Not a member? 
+                    <a href="{{ route('register') }}" class="font-bold text-purple-600 hover:underline">Register now</a>
+                </p>
             </form>
         </div>
-
     </div>
 </section>
 
@@ -164,6 +163,29 @@
         const captchaInput = document.getElementById('captcha');
         if (captchaInput) captchaInput.value = '';
         img.onload = () => img.style.opacity = '1';
+    }
+
+    // Auto Hide Errors Helper
+    function autoHideErrors() {
+        setTimeout(() => {
+            // Hide Global Error
+            const globalError = document.getElementById('global-error');
+            if (globalError) {
+                globalError.style.opacity = '0';
+                setTimeout(() => {
+                    globalError.classList.add('hidden');
+                    globalError.style.opacity = '1';
+                }, 500);
+            }
+            // Hide Input Field Errors
+            document.querySelectorAll('.input-error').forEach(el => {
+                el.classList.add('hidden');
+            });
+            // Reset border colors
+            document.querySelectorAll('input').forEach(el => {
+                el.classList.remove('border-red-500');
+            });
+        }, 5000);
     }
 
     // AJAX Login Logic
@@ -229,6 +251,9 @@
                 if (!result.errors || Object.keys(result.errors).length === 0) {
                     showGlobalError(result.message || 'Login failed. Please check your credentials.');
                 }
+                
+                // Trigger auto hide after showing errors
+                autoHideErrors();
 
             } else if (response.status === 429) {
                 loadingOverlay.classList.add('hidden');
@@ -241,6 +266,7 @@
             loadingOverlay.classList.add('hidden');
             submitBtn.disabled = false;
             showGlobalError("Unable to connect to the server. Please check your connection.");
+            autoHideErrors();
         }
     });
 
