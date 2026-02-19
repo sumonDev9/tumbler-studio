@@ -9,6 +9,7 @@
 @include('components.home.acurious-section')
 @include('components.home.home-contact')
 @include('partials.trusted-brands') 
+@include('components.home.testimonial-section')
 
 
 
