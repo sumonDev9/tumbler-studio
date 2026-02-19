@@ -1,102 +1,55 @@
+<div id="mobile-overlay" class="fixed inset-0 bg-black/80 z-40 hidden lg:hidden backdrop-blur-sm transition-opacity" onclick="toggleSidebar()"></div>
+
 <aside id="sidebar"
-    class="sidebar flex flex-col sidebar-closed md:sidebar-open fixed left-0 top-0 h-full w-72 bg-white shadow-2xl z-50">
-    <div class=" p-6 text-white" style="background-color: var(--primary);">
-        <div class="flex items-center justify-between">
-            <h1 class="text-2xl font-bold">Dashboard</h1>
-            <button id="closeSidebar" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
+    class="fixed lg:static inset-y-0 left-0 w-72 glass-panel z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 flex flex-col h-full rounded-r-2xl lg:rounded-none border-r border-gray-200 dark:border-white/5">
+
+    <div class="p-6 flex items-center gap-3">
+        <div class="w-10 h-10">
+            <img src="{{ asset('assets/image/header/logo.png') }}" alt="">
         </div>
-        <p class="text-sm opacity-90 mt-1">Welcome to your dashboard</p>
+        <div>
+            <h1 class="text-xl font-bold text-gray-800 dark:text-white tracking-wide">Oraliya</h1>
+            <p class="text-xs text-gray-500 dark:text-white">Admin Panel</p>
+        </div>
+        <button onclick="toggleSidebar()" class="lg:hidden ml-auto text-gray-500 hover:text-red-500">
+            <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
     </div>
 
-    <nav class="p-4 flex-1 overflow-y-auto 
-            [&::-webkit-scrollbar]:w-2 
-            [&::-webkit-scrollbar-track]:bg-gray-100
-            [&::-webkit-scrollbar-thumb]:bg-green-800
-            [&::-webkit-scrollbar-thumb]:rounded-full
-            dark:[&::-webkit-scrollbar-track]:bg-gray-800
-            dark:[&::-webkit-scrollbar-thumb]:bg-green-600">
-
-
+    <nav class="flex-1 px-4 py-4 space-y-2 overflow-y-auto">
+        <p class="px-4 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">Menu</p>
 
         @foreach (config('admin-panel.sidebar', []) as $item)
-            @if(!isset($item['permission']) || auth()->user()->can($item['permission']))
-                <a href="{{ route($item['route']) }}"
-                    class="nav-item {{ request()->routeIs($item['active_on']) ? 'active' : '' }} flex items-center gap-4 p-4 rounded-xl mb-2 transition-all"
-                    tabindex="0">
-                    {!! $item['icon'] !!} {{-- SVG আইকন দেখানোর জন্য !! !! ব্যবহার করা হলো --}}
-                    <span class="font-medium">{{ $item['title'] }}</span>
-                </a>
-            @endif
+            <a href="{{ route($item['route']) }}"
+               class="nav-item {{ request()->routeIs($item['active_on']) ? 'active' : '' }} flex items-center gap-4 px-4 py-3 text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-white hover:bg-emerald-50 dark:hover:bg-white/5 rounded-r-full transition-all duration-300 group rounded-lg">
+                <span class="w-5 group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+                    {!! $item['icon'] !!}
+                </span>
+                <span class="font-medium">{{ $item['title'] }}</span>
+            </a>
         @endforeach
-
-
-
-        {{-- <a href="{{ route('dashboard') }}"
-            class="nav-item {{ request()->routeIs('dashboard*') ? 'active' : '' }} flex items-center gap-4 p-4 rounded-xl mb-2 transition-all"
-            tabindex="0">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            <span class="font-medium">Dashboard</span>
-        </a>
-
-        <a href="{{ route('users.index') }}"
-            class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }} flex items-center gap-4 p-4 rounded-xl mb-2 transition-all"
-            tabindex="0">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            <span class="font-medium">Users</span>
-        </a>
-
-        <a href="{{ route('settings.index') }}"
-            class="nav-item {{ request()->routeIs('settings.*') ? 'active' : '' }} flex items-center gap-4 p-4 rounded-xl mb-2 transition-all"
-            tabindex="0">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span class="font-medium">Settings</span>
-        </a>
-
-
-        <a href="{{ route('user-logs.index') }}"
-            class="nav-item {{ request()->routeIs('user-logs.*') ? 'active' : '' }} flex items-center gap-4 p-4 rounded-xl mb-2 transition-all"
-            tabindex="0">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <span class="font-medium">User Logs</span>
-        </a> --}}
-
-
     </nav>
 
-    <div class="p-4 border-t  border-gray-200">
-        <div
-            class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 transition cursor-pointer">
+    <div class="p-4 border-t border-gray-200 dark:border-white/5 m-4 rounded-2xl bg-white/50 dark:bg-white/5 backdrop-blur-md">
+        <div class="flex items-center gap-3">
             @if (auth()->check())
-                    <img src="{{ auth()->user()->profile_image
-                ? asset('storage/' . auth()->user()->profile_image)
-                : asset('images/default-avatar.jpeg') }}" alt="Profile"
-                        class="w-10 h-10 rounded-full object-cover border-2 border-gray-200 hover:border-indigo-500 cursor-pointer transition">
+                <img src="{{ auth()->user()->profile_image
+                    ? asset('storage/' . auth()->user()->profile_image)
+                    : asset('images/default-avatar.jpeg') }}"
+                    alt="Profile"
+                    class="w-10 h-10 rounded-full border-2 border-emerald-500/50">
             @else
-                <img src="{{ asset('images/default-avatar.jpeg') }}" alt="Default Profile"
-                    class="w-10 h-10 rounded-full object-cover border-2 border-gray-200 hover:border-indigo-500 cursor-pointer transition">
+                <img src="{{ asset('images/default-avatar.jpeg') }}" alt="Default"
+                    class="w-10 h-10 rounded-full border-2 border-emerald-500/50">
             @endif
-            <div class="flex-1">
-                <p class="font-semibold text-sm text-gray-800">{{ auth()->user()->name }}</p>
-                <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
+            
+            <div class="flex-1 min-w-0">
+                <p class="text-sm font-semibold text-gray-800 dark:text-white truncate">
+                    {{ auth()->check() ? auth()->user()->name : 'Guest' }}
+                </p>
+                <p class="text-xs text-gray-500 truncate">
+                    {{ auth()->check() ? auth()->user()->email : 'Login required' }}
+                </p>
             </div>
         </div>
     </div>
