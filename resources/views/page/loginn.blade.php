@@ -10,7 +10,7 @@
 
 <div class="text-center mx-auto mb-8 max-w-md" data-aos="fade-down" data-aos-duration="1000">
     <h1 class="lg:text-5xl md:text-3xl text-xl text-black font-bold text-beiruti mb-4">
-        Signin
+        Sign in
     </h1>
     <p class="text-sm text-black leading-relaxed">
         We thrive on creative challenges, and your project could be our next

@@ -1,327 +1,293 @@
-@extends('admin-panel::layouts.guest')
-@section('title', 'Login')
-@section('page-heading', 'Sign in to your account')
+@extends('layouts.app')
+@section('title', 'Tumbler Studio – Login')
+@section('page_title', 'Login')
+@section('breadcrumb', 'Login')
 
 @section('content')
-    {{-- Global Error Container --}}
-    <div id="global-error"
-        class="hidden mb-6 p-4 rounded-xl bg-red-50 border-l-4 border-red-500 shadow-sm transition-all duration-300">
-        <div class="flex items-center mb-2">
-            <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L10 8.586 8.707 7.293z"
-                    clip-rule="evenodd" />
-            </svg>
-            <span class="font-bold text-red-800">Login Failed</span>
-        </div>
-        <p id="global-error-text" class="text-sm text-red-600"></p>
-    </div>
 
-    {{-- Lockout Overlay/Box --}}
-    <div id="lockout-box"
-        class="hidden relative overflow-hidden bg-red-600 text-white rounded-2xl shadow-2xl p-6 text-center mb-6 animate-pulse">
-        <div class="absolute inset-0 bg-red-700 opacity-50"></div>
-        <div class="relative z-10">
-            <div class="text-xs uppercase font-bold tracking-widest opacity-90 mb-2">Security Lockout</div>
-            <div class="text-5xl font-black tabular-nums tracking-tighter" id="lockout-timer">0</div>
-            <div class="text-xs mt-2 font-medium opacity-90">Seconds remaining</div>
-            <p class="text-[10px] mt-4 opacity-75">Too many incorrect attempts. Detector triggered.</p>
-        </div>
-    </div>
+<div class="text-center mx-auto mb-8 max-w-md" data-aos="fade-down" data-aos-duration="1000">
+    <h1 class="lg:text-5xl md:text-3xl text-xl text-black font-bold text-beiruti mb-4">
+        Sign in
+    </h1>
+    <p class="text-sm text-black leading-relaxed">
+        We thrive on creative challenges, and your project could be our next
+        masterpiece. Let's work together to bring your vision to life through
+        the magic of animation.
+    </p>
+</div>
 
-    <form method="POST" action="{{ route('login') }}" id="login-form" class="space-y-5 relative">
-        @csrf
+<section class="relative py-28 bg-[rgba(255,105,33,0.07)] overflow-hidden">
+    {{-- Decorative Images --}}
+    <img src="{{ asset('assets/image/service/Frame.png') }}" class="absolute z-0 -top-9 w-full" alt="" />
+    <img src="{{ asset('assets/image/home/Frame (3).png') }}" class="absolute top-10 right-10 w-[150px] hidden lg:block" alt="" />
 
-        {{-- Loading Overlay --}}
-        <div id="loading-overlay"
-            class="hidden absolute inset-0 bg-white/70 backdrop-blur-[2px] z-50 flex flex-col items-center justify-center rounded-xl">
-            <div class="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-            <p class="mt-3 text-xs font-bold text-primary animate-pulse">Authenticating...</p>
+    <img class="absolute bottom-0 w-full z-10" src="{{ asset('assets/image/service/top.png') }}" alt=""
+        data-aos="fade-up" data-aos-anchor-placement="bottom-bottom" />
+
+    <div class="container mx-auto px-4 relative z-10 flex flex-col items-center">
+        
+        {{-- Global Error Container --}}
+        <div id="global-error" class="hidden w-full max-w-lg mb-6 p-4 rounded-xl bg-red-50 border-l-4 border-red-500 shadow-sm transition-all duration-300">
+            <div class="flex items-center mb-2">
+                <svg class="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+                <span class="font-bold text-red-800">Login Failed</span>
+            </div>
+            <p id="global-error-text" class="text-sm text-red-600"></p>
         </div>
 
-        <div>
-            <label class="block text-sm font-semibold text-gray-700">Email Address</label>
-            <input type="email" name="email" id="email" required autofocus
-                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
-                placeholder="Enter your email">
-            <p class="input-error text-xs text-red-500 mt-1 hidden" id="error-email"></p>
+        {{-- Lockout Box --}}
+        <div id="lockout-box" class="hidden w-full max-w-lg relative overflow-hidden bg-red-600 text-white rounded-2xl shadow-2xl p-6 text-center mb-6 animate-pulse z-50">
+            <div class="relative z-10">
+                <div class="text-xs uppercase font-bold tracking-widest opacity-90 mb-2">Security Lockout</div>
+                <div class="text-5xl font-black tabular-nums tracking-tighter" id="lockout-timer">0</div>
+                <div class="text-xs mt-2 font-medium opacity-90">Seconds remaining</div>
+                <p class="text-[10px] mt-4 opacity-75">Too many incorrect attempts. Detector triggered.</p>
+            </div>
         </div>
 
-        <div>
-            <label class="block text-sm font-semibold text-gray-700">Password</label>
-            <input type="password" name="password" id="password" required
-                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
-                placeholder="Enter code here">
-            <p class="input-error text-xs text-red-500 mt-1 hidden" id="error-password"></p>
+        {{-- Mascot Image --}}
+        <div class="relative z-30 -mb-12 md:-mb-16 mx-auto w-48 md:w-72 lg:w-80 transition-all duration-300"
+            data-aos="zoom-in" data-aos-delay="300">
+            <img class="w-full h-auto object-contain mx-auto" src="{{ asset('assets/image/login/owl.png') }}"
+                alt="Owl" />
         </div>
 
-        <div class="bg-gray-50 p-5 rounded-2xl border border-gray-200 shadow-inner">
-            <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Security
-                Verification</label>
+        {{-- Form Box --}}
+        <div class="form-bg mx-auto border-2 border-purple-200 rounded-[40px] shadow-xl p-8 pt-16 w-full max-w-lg relative overflow-hidden"
+            style="background-image: url('{{ asset('assets/image/login/Rectangle 234.png') }}'); background-position: center; background-repeat: no-repeat;"
+            data-aos="fade-up" data-aos-delay="500">
+            
+            {{-- Loading Overlay --}}
+            <div id="loading-overlay" class="hidden absolute inset-0 bg-white/70 backdrop-blur-[2px] z-50 flex flex-col items-center justify-center rounded-[40px]">
+                <div class="w-10 h-10 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+                <p class="mt-3 text-xs font-bold text-purple-600 animate-pulse">Authenticating...</p>
+            </div>
 
-            <div class="flex flex-col space-y-3">
-                <div class="flex items-center gap-2 bg-white p-2 rounded-xl border">
-                    <div class="flex-1 flex justify-center py-1">
-                        <img src="{{ route('captcha.generate') }}" id="captcha-img" class="h-12 object-contain"
-                            style="min-width: 150px;">
+            <form action="{{ route('login') }}" method="POST" id="login-form" class="space-y-6">
+                @csrf
+                {{-- Email Field --}}
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-purple-500">
+                        <i class="fa-regular fa-user text-xl"></i>
+                    </span>
+                    <input type="email" name="email" id="email" placeholder="Enter Your Email" required
+                        class="w-full py-4 pl-12 pr-4 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-sm transition-all" />
+                    <p class="input-error text-xs text-red-500 mt-1 ml-4 hidden" id="error-email"></p>
+                </div>
+
+                {{-- Password Field --}}
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-purple-500">
+                        <i class="fa-solid fa-lock text-xl"></i>
+                    </span>
+                    <input type="password" name="password" id="password" placeholder="Enter Your Password" required
+                        class="w-full py-4 pl-12 pr-12 bg-white border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-sm transition-all" />
+                    
+                    <button type="button" onclick="togglePassword()"
+                        class="absolute inset-y-0 right-0 flex items-center pr-5 text-gray-400 hover:text-purple-500">
+                        <i id="toggleIcon" class="fa-regular fa-eye-slash text-lg"></i>
+                    </button>
+                    <p class="input-error text-xs text-red-500 mt-1 ml-4 hidden" id="error-password"></p>
+                </div>
+
+                {{-- Captcha Field (New) --}}
+                <div class="bg-purple-50/50 p-4 rounded-3xl border border-purple-100 shadow-inner">
+                    <div class="flex flex-col space-y-3">
+                        <div class="flex items-center gap-2 bg-white p-2 rounded-full border border-purple-200">
+                            <div class="flex-1 flex justify-center py-1">
+                                <img src="{{ route('captcha.generate') }}" id="captcha-img" class="h-10 object-contain" style="min-width: 120px;">
+                            </div>
+                            <button type="button" onclick="refreshCaptcha()" class="p-2 bg-gray-100 hover:bg-purple-500 hover:text-white rounded-full transition-all">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <input type="text" name="captcha" id="captcha" placeholder="Enter Security Code" required
+                            class="block w-full px-4 py-3 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-400 text-center text-lg font-mono tracking-widest bg-white">
                     </div>
-                    <button type="button" onclick="refreshCaptcha()"
-                        class="p-3 bg-gray-100 hover:bg-primary hover:text-white rounded-lg transition-all shadow-sm"
-                        title="Reload Code">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
-                            </path>
-                        </svg>
+                    <p class="input-error text-xs text-red-500 mt-1 hidden text-center" id="error-captcha"></p>
+                </div>
+
+                <div class="flex justify-between items-center px-4">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="remember" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500">
+                        <label for="remember_me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="text-sm font-semibold text-gray-800 hover:underline">Forgot Password</a>
+                    @endif
+                </div>
+
+                {{-- Login Button --}}
+                <div class="mt-8 flex justify-center">
+                    <button type="submit" id="submit-btn"
+                        class="group bg-gradient-to-r from-[#FF3B6B] to-[#E60045] text-white px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-3">
+                        <div class="bg-white/80 p-1.5 rounded-full">
+                            <img src="{{ asset('assets/image/home/Group 38.png') }}" alt="icon" />
+                        </div>
+                        <span id="btn-text">LOGIN NOW</span>
                     </button>
                 </div>
 
-                <input type="text" name="captcha" id="captcha" placeholder="Enter code here" required
-                    class="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-center text-lg font-mono tracking-widest">
-            </div>
-            <p class="input-error text-xs text-red-500 mt-1 hidden text-center" id="error-captcha"></p>
+                        <p class="mt-8 text-center text-sm text-gray-600 relative z-20">
+            Not a member? 
+            <a href="{{ route('register') }}" class="font-bold text-purple-600 hover:underline">Register now</a>
+        </p>
+            </form>
         </div>
 
-        <div class="flex items-center justify-between">
-            <div class="flex items-center">
-                <input id="remember_me" name="remember" type="checkbox"
-                    class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
-                <label for="remember_me" class="ml-2 block text-sm text-gray-700">Remember me</label>
-            </div>
-            @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="text-sm font-semibold text-primary hover:underline">
-                    Forgot password?
-                </a>
-            @endif
-        </div>
+    </div>
+</section>
 
-        <button type="submit" id="submit-btn"
-            class="w-full py-4 rounded-xl shadow-lg text-sm font-bold text-white gradient-bg hover:opacity-90 transition-all transform active:scale-[0.98]">
-            SECURE LOGIN
-        </button>
-    </form>
-
-    @if(config('admin-panel.social_login.google') || config('admin-panel.social_login.facebook'))
-        <div class="mt-6">
-            <div class="relative">
-                <div class="absolute inset-0 flex items-center">
-                    <div class="w-full border-t border-gray-300"></div>
-                </div>
-                <div class="relative flex justify-center text-sm">
-                    <span class="px-2 bg-white text-gray-500">
-                        Or continue with
-                    </span>
-                </div>
-            </div>
-
-            <div
-                class="mt-6 grid {{ config('admin-panel.social_login.google') && config('admin-panel.social_login.facebook') ? 'grid-cols-2 gap-3' : 'grid-cols-1' }}">
-                @if(config('admin-panel.social_login.google'))
-                    <div>
-                        <a href="{{ route('social.login', 'google') }}"
-                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                            <span class="sr-only">Sign in with Google</span>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.44 0 6.1-1.133 7.96-3.267 2.12-2.427 2.12-6.507 1.627-8.293H12.48z" />
-                            </svg>
-                        </a>
-                    </div>
-                @endif
-
-                @if(config('admin-panel.social_login.facebook'))
-                    <div>
-                        <a href="{{ route('social.login', 'facebook') }}"
-                            class="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                            <span class="sr-only">Sign in with Facebook</span>
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                @endif
-            </div>
-        </div>
-    @endif
-
-    <p class="mt-8 text-center text-sm text-gray-600">
-        Not a member?
-        <a href="{{ route('register') }}" class="font-bold text-primary hover:underline">
-            Register now
-        </a>
-    </p>
-
-    <script>
-        function refreshCaptcha() {
-            const img = document.getElementById('captcha-img');
-            img.style.opacity = '0.5';
-            img.src = '{{ route("captcha.generate") }}?' + Math.random();
-            const captchaInput = document.getElementById('captcha');
-            if (captchaInput) captchaInput.value = ''; // Clear input on refresh
-
-            img.onload = () => img.style.opacity = '1';
+<script>
+    // Password Toggle
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const icon = document.getElementById('toggleIcon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
         }
+    }
 
-        document.getElementById('login-form').addEventListener('submit', async function (e) {
-            e.preventDefault();
+    // Refresh Captcha
+    function refreshCaptcha() {
+        const img = document.getElementById('captcha-img');
+        img.style.opacity = '0.5';
+        img.src = '{{ route("captcha.generate") }}?' + Math.random();
+        const captchaInput = document.getElementById('captcha');
+        if (captchaInput) captchaInput.value = '';
+        img.onload = () => img.style.opacity = '1';
+    }
 
-            // Elements
-            const form = this;
-            const submitBtn = document.getElementById('submit-btn');
-            const loadingOverlay = document.getElementById('loading-overlay');
-            const globalError = document.getElementById('global-error');
-            const globalErrorText = document.getElementById('global-error-text');
-            const lockoutBox = document.getElementById('lockout-box');
-            const lockoutTimer = document.getElementById('lockout-timer');
+    // AJAX Login Logic
+    document.getElementById('login-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-            // Reset UI
-            loadingOverlay.classList.remove('hidden');
-            submitBtn.disabled = true;
-            globalError.classList.add('hidden');
-            document.querySelectorAll('.input-error').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('input').forEach(el => el.classList.remove('border-red-500'));
+        const form = this;
+        const submitBtn = document.getElementById('submit-btn');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const globalError = document.getElementById('global-error');
+        const globalErrorText = document.getElementById('global-error-text');
 
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
+        // Reset UI
+        loadingOverlay.classList.remove('hidden');
+        submitBtn.disabled = true;
+        globalError.classList.add('hidden');
+        document.querySelectorAll('.input-error').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('input').forEach(el => el.classList.remove('border-red-500'));
 
-            try {
-                const response = await fetch("{{ route('login') }}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                    },
-                    body: JSON.stringify(data)
-                });
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
 
-                const result = await response.json();
+        try {
+            const response = await fetch("{{ route('login') }}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                body: JSON.stringify(data)
+            });
 
-                if (response.ok) {
-                    // Success (Redirect)
-                    window.location.href = result.redirect_url || '/dashboard';
-                } else if (response.status === 422) {
-                    // Validation Errors
-                    loadingOverlay.classList.add('hidden');
-                    submitBtn.disabled = false;
-                    refreshCaptcha(); // Security best practice
+            const result = await response.json();
 
-                    // Check for lockout specific error
-                    if (result.errors.seconds_left) {
-                        startLockout(result.errors.seconds_left[0] || result.errors.seconds_left);
-                        return;
-                    }
-
-                    // Display Field Errors
-                    if (result.errors) {
-                        for (const [key, messages] of Object.entries(result.errors)) {
-                            const errorEl = document.getElementById(`error-${key}`);
-                            const inputEl = document.getElementById(key);
-                            if (errorEl) {
-                                errorEl.textContent = messages[0]; // Show first error
-                                errorEl.classList.remove('hidden');
-                            }
-                            if (inputEl) {
-                                inputEl.classList.add('border-red-500');
-                                inputEl.classList.add('shake'); // Add shake animation class if exists
-                                setTimeout(() => inputEl.classList.remove('shake'), 500);
-                            }
-                        }
-                    }
-
-                    // Global fallback
-                    if (!result.errors || Object.keys(result.errors).length === 0) {
-                        showGlobalError(result.message || 'Login failed. Please check your credentials.');
-                    }
-
-                } else if (response.status === 429) {
-                    // Rate Limited (Too Many Attempts)
-                    loadingOverlay.classList.add('hidden');
-                    // Try to parse seconds from header or body
-                    const retryAfter = response.headers.get('Retry-After');
-                    startLockout(retryAfter || 60);
-
-                } else {
-                    // Other Errors (500, etc)
-                    throw new Error(result.message || 'Something went wrong. Please try again.');
-                }
-            } catch (error) {
+            if (response.ok) {
+                window.location.href = result.redirect_url || '/dashboard';
+            } else if (response.status === 422) {
                 loadingOverlay.classList.add('hidden');
                 submitBtn.disabled = false;
-                console.error('Login Error:', error);
+                refreshCaptcha();
 
-                // If it was a 422 that was handled above, we shouldn't get here unless JSON parsing failed
-                // But generally catch network errors
-                showGlobalError("Unable to connect to the server. Please check your internet connection.");
-            }
-        });
-
-        function showGlobalError(msg) {
-            const globalError = document.getElementById('global-error');
-            const globalErrorText = document.getElementById('global-error-text');
-            globalErrorText.textContent = msg;
-            globalError.classList.remove('hidden');
-        }
-
-        function startLockout(seconds) {
-            const lockoutBox = document.getElementById('lockout-box');
-            const lockoutTimer = document.getElementById('lockout-timer');
-            const form = document.getElementById('login-form');
-            const submitBtn = document.getElementById('submit-btn');
-
-            // Show lockout, hide form opacity
-            lockoutBox.classList.remove('hidden');
-            form.classList.add('opacity-50', 'pointer-events-none');
-            submitBtn.disabled = true;
-
-            let timeLeft = parseInt(seconds);
-            lockoutTimer.innerText = timeLeft;
-
-            const countdown = setInterval(() => {
-                timeLeft--;
-                lockoutTimer.innerText = timeLeft;
-
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    // Unlock
-                    lockoutBox.classList.add('hidden');
-                    form.classList.remove('opacity-50', 'pointer-events-none');
-                    submitBtn.disabled = false;
-                    refreshCaptcha();
+                if (result.errors.seconds_left) {
+                    startLockout(result.errors.seconds_left[0] || result.errors.seconds_left);
+                    return;
                 }
-            }, 1000);
+
+                if (result.errors) {
+                    for (const [key, messages] of Object.entries(result.errors)) {
+                        const errorEl = document.getElementById(`error-${key}`);
+                        const inputEl = document.getElementById(key);
+                        if (errorEl) {
+                            errorEl.textContent = messages[0];
+                            errorEl.classList.remove('hidden');
+                        }
+                        if (inputEl) {
+                            inputEl.classList.add('border-red-500', 'shake');
+                            setTimeout(() => inputEl.classList.remove('shake'), 500);
+                        }
+                    }
+                }
+
+                if (!result.errors || Object.keys(result.errors).length === 0) {
+                    showGlobalError(result.message || 'Login failed. Please check your credentials.');
+                }
+
+            } else if (response.status === 429) {
+                loadingOverlay.classList.add('hidden');
+                const retryAfter = response.headers.get('Retry-After');
+                startLockout(retryAfter || 60);
+            } else {
+                throw new Error(result.message || 'Something went wrong.');
+            }
+        } catch (error) {
+            loadingOverlay.classList.add('hidden');
+            submitBtn.disabled = false;
+            showGlobalError("Unable to connect to the server. Please check your connection.");
         }
-    </script>
+    });
 
-    <style>
-        .shake {
-            animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
-        }
+    function showGlobalError(msg) {
+        const globalError = document.getElementById('global-error');
+        const globalErrorText = document.getElementById('global-error-text');
+        globalErrorText.textContent = msg;
+        globalError.classList.remove('hidden');
+        globalError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
-        @keyframes shake {
+    function startLockout(seconds) {
+        const lockoutBox = document.getElementById('lockout-box');
+        const lockoutTimer = document.getElementById('lockout-timer');
+        const form = document.getElementById('login-form');
+        const submitBtn = document.getElementById('submit-btn');
 
-            10%,
-            90% {
-                transform: translate3d(-1px, 0, 0);
+        lockoutBox.classList.remove('hidden');
+        form.classList.add('opacity-50', 'pointer-events-none');
+        submitBtn.disabled = true;
+
+        let timeLeft = parseInt(seconds);
+        lockoutTimer.innerText = timeLeft;
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            lockoutTimer.innerText = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                lockoutBox.classList.add('hidden');
+                form.classList.remove('opacity-50', 'pointer-events-none');
+                submitBtn.disabled = false;
+                refreshCaptcha();
             }
+        }, 1000);
+    }
+</script>
 
-            20%,
-            80% {
-                transform: translate3d(2px, 0, 0);
-            }
+<style>
+    .shake { animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both; }
+    @keyframes shake {
+        10%, 90% { transform: translate3d(-1px, 0, 0); }
+        20%, 80% { transform: translate3d(2px, 0, 0); }
+        30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+        40%, 60% { transform: translate3d(4px, 0, 0); }
+    }
+    input::placeholder { color: #9ca3af; font-size: 0.9rem; }
+</style>
 
-            30%,
-            50%,
-            70% {
-                transform: translate3d(-4px, 0, 0);
-            }
-
-            40%,
-            60% {
-                transform: translate3d(4px, 0, 0);
-            }
-        }
-    </style>
 @endsection
