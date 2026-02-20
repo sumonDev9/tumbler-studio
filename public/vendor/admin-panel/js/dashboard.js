@@ -22,104 +22,104 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Dark Mode Toggle (3-State)
-    const darkModeBtn = document.getElementById('darkModeBtn');
-    const moonIcon = document.getElementById('moonIcon'); // Dark mode icon
-    const sunIcon = document.getElementById('sunIcon');   // Light mode icon
-    const systemIcon = document.getElementById('systemIcon'); // System mode icon
+    // const darkModeBtn = document.getElementById('darkModeBtn');
+    // const moonIcon = document.getElementById('moonIcon'); // Dark mode icon
+    // const sunIcon = document.getElementById('sunIcon');   // Light mode icon
+    // const systemIcon = document.getElementById('systemIcon'); // System mode icon
 
-    // Helper to apply visual state
-    function updateDarkModeUI(mode) {
-        // Toggle body class
-        if (mode === 'dark') {
-            document.body.classList.add('dark');
-        } else if (mode === 'light') {
-            document.body.classList.remove('dark');
-        } else if (mode === 'system') {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.body.classList.add('dark');
-            } else {
-                document.body.classList.remove('dark');
-            }
-        }
+    // // Helper to apply visual state
+    // function updateDarkModeUI(mode) {
+    //     // Toggle body class
+    //     if (mode === 'dark') {
+    //         document.body.classList.add('dark');
+    //     } else if (mode === 'light') {
+    //         document.body.classList.remove('dark');
+    //     } else if (mode === 'system') {
+    //         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    //             document.body.classList.add('dark');
+    //         } else {
+    //             document.body.classList.remove('dark');
+    //         }
+    //     }
 
-        // Toggle Icons
-        moonIcon?.classList.add('hidden');
-        sunIcon?.classList.add('hidden');
-        systemIcon?.classList.add('hidden');
+    //     // Toggle Icons
+    //     moonIcon?.classList.add('hidden');
+    //     sunIcon?.classList.add('hidden');
+    //     systemIcon?.classList.add('hidden');
 
-        if (mode === 'dark') {
-            moonIcon?.classList.remove('hidden');
-        } else if (mode === 'light') {
-            sunIcon?.classList.remove('hidden');
-        } else {
-            systemIcon?.classList.remove('hidden');
-        }
-    }
+    //     if (mode === 'dark') {
+    //         moonIcon?.classList.remove('hidden');
+    //     } else if (mode === 'light') {
+    //         sunIcon?.classList.remove('hidden');
+    //     } else {
+    //         systemIcon?.classList.remove('hidden');
+    //     }
+    // }
 
-    if (darkModeBtn) {
-        // Initial State from Server/Page
-        let currentMode = 'light';
-        if (document.body.classList.contains('dark')) currentMode = 'dark';
+    // if (darkModeBtn) {
+    //     // Initial State from Server/Page
+    //     let currentMode = 'light';
+    //     if (document.body.classList.contains('dark')) currentMode = 'dark';
 
-        // Check if previously saved as system (we can check if systemIcon is visible if server rendered it, 
-        // but simpler to track locally or infer). 
-        // For now, let's assume if body has dark/light class it's literal, unless we add a data attribute.
-        // Better yet, let's just cycle from what we see. 
-        // To properly sync with server state, ideally we'd pass the mode to JS.
-        // A simple heuristic: check which icon is visible by default (if we rendered it server side).
-        // Since we didn't update server side rendering to show correct icon, let's default to a safe cycle.
+    //     // Check if previously saved as system (we can check if systemIcon is visible if server rendered it, 
+    //     // but simpler to track locally or infer). 
+    //     // For now, let's assume if body has dark/light class it's literal, unless we add a data attribute.
+    //     // Better yet, let's just cycle from what we see. 
+    //     // To properly sync with server state, ideally we'd pass the mode to JS.
+    //     // A simple heuristic: check which icon is visible by default (if we rendered it server side).
+    //     // Since we didn't update server side rendering to show correct icon, let's default to a safe cycle.
 
-        // Actually, let's just check local storage if available, or default to light.
-        // Wait, the user wants dynamic. Let's start with a safe default or read from a data attribute if we added one.
-        // We didn't add a data attribute. Let's use a robust cycle.
+    //     // Actually, let's just check local storage if available, or default to light.
+    //     // Wait, the user wants dynamic. Let's start with a safe default or read from a data attribute if we added one.
+    //     // We didn't add a data attribute. Let's use a robust cycle.
 
-        const modes = ['light', 'dark', 'system'];
-        // Try to guess current mode idx
-        let currentModeIdx = 0;
-        if (document.body.classList.contains('dark')) currentModeIdx = 1;
+    //     const modes = ['light', 'dark', 'system'];
+    //     // Try to guess current mode idx
+    //     let currentModeIdx = 0;
+    //     if (document.body.classList.contains('dark')) currentModeIdx = 1;
 
-        // If system icon was implemented in blade to show by default, we'd check that.
-        // For now, let's initialize UI based on what the body class says.
+    //     // If system icon was implemented in blade to show by default, we'd check that.
+    //     // For now, let's initialize UI based on what the body class says.
 
-        // Initialize UI with current detected mode
-        updateDarkModeUI(modes[currentModeIdx]);
+    //     // Initialize UI with current detected mode
+    //     updateDarkModeUI(modes[currentModeIdx]);
 
 
-        darkModeBtn.addEventListener('click', async () => {
-            // Cycle: Light -> Dark -> System -> Light
-            currentModeIdx = (currentModeIdx + 1) % 3;
-            const newMode = modes[currentModeIdx];
+    //     darkModeBtn.addEventListener('click', async () => {
+    //         // Cycle: Light -> Dark -> System -> Light
+    //         currentModeIdx = (currentModeIdx + 1) % 3;
+    //         const newMode = modes[currentModeIdx];
 
-            updateDarkModeUI(newMode);
+    //         updateDarkModeUI(newMode);
 
-            // Save preference to server
-            try {
-                await fetch('/settings/theme', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: JSON.stringify({
-                        dark_mode: newMode === 'system' ? 'system' : (newMode === 'dark')
-                    })
-                });
-            } catch (error) {
-                console.error('Error saving dark mode:', error);
-            }
-        });
+    //         // Save preference to server
+    //         try {
+    //             await fetch('/settings/theme', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                     'X-CSRF-TOKEN': csrfToken
+    //                 },
+    //                 body: JSON.stringify({
+    //                     dark_mode: newMode === 'system' ? 'system' : (newMode === 'dark')
+    //                 })
+    //             });
+    //         } catch (error) {
+    //             console.error('Error saving dark mode:', error);
+    //         }
+    //     });
 
-        // Listen for System Changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            // Only apply if we are in system mode
-            // We need to know if we are in system mode. 
-            // Limitation: without specific state tracking, we might affect manual modes.
-            // Ideally we track `currentMode` in a wider scope.
-            if (modes[currentModeIdx] === 'system') {
-                updateDarkModeUI('system');
-            }
-        });
-    }
+    //     // Listen for System Changes
+    //     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    //         // Only apply if we are in system mode
+    //         // We need to know if we are in system mode. 
+    //         // Limitation: without specific state tracking, we might affect manual modes.
+    //         // Ideally we track `currentMode` in a wider scope.
+    //         if (modes[currentModeIdx] === 'system') {
+    //             updateDarkModeUI('system');
+    //         }
+    //     });
+    // }
 
     // Color Pickers
     const primaryColor = document.getElementById('primaryColor');

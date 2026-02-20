@@ -5,10 +5,10 @@
 
     <div class="p-6 flex items-center gap-3">
         <div class="w-10 h-10">
-            <img src="{{ asset('assets/image/header/logo.png') }}" alt="">
+            <img src="{{ asset('assets/image/home/logo.png') }}" alt="">
         </div>
         <div>
-            <h1 class="text-xl font-bold text-gray-800 dark:text-white tracking-wide">Oraliya</h1>
+            <h1 class="text-xl font-bold text-gray-800 dark:text-white tracking-wide">Tumbler Studios</h1>
             <p class="text-xs text-gray-500 dark:text-white">Admin Panel</p>
         </div>
         <button onclick="toggleSidebar()" class="lg:hidden ml-auto text-gray-500 hover:text-red-500">

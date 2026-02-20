@@ -69,15 +69,16 @@
             </div>
         </div>
 
-        <div class="w-full md:w-1/2 hidden relative lg:flex justify-center md:justify-end mt-12 md:mt-0">
-            <div class="relative z-10 mt-24 2xl:mt-20">
-                <img src="{{ asset('assets/image/home/co.png') }}" alt="3D Character"
-                    class="object-cover h-[350px] drop-shadow-2xl ml-auto mask-image-bottom" />
-            </div>
-        </div>
+<div class="w-full md:w-1/2 hidden relative lg:flex justify-center md:justify-end mt-12 md:mt-0">
+    <div class="relative z-0 mt-24 2xl:mt-8">
+        <img src="@yield('hero_image', asset('assets/image/home/co.png'))" 
+             alt="Page Character"
+             class="object-cover h-[350px]  ml-auto" />
+    </div>
+</div>
     </div>
 
-    <div class="absolute bottom-0 left-0 w-full leading-none z-0">
+    <div class="absolute bottom-0 left-0 w-full leading-none z-10">
         <img src="{{ asset('assets/image/home/Vector__1_-removebg-preview.png') }}" class="w-full" alt="" />
     </div>
 

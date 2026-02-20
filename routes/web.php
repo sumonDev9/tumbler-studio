@@ -32,3 +32,7 @@ Route::get('/portfolio', function () {
 Route::get('/service', function () {
     return view('page.service');
 });
+
+Route::get('/team', function () {
+    return view('page.team');
+});
