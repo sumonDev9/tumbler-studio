@@ -1,4 +1,4 @@
-<section class="py-14 relative overflow-hidden lg:h-[750px] 2xl:h-[900px]">
+<section class="lg:py-14 relative overflow-hidden lg:h-[750px] 2xl:h-[900px]">
     <img src="{{ asset('assets/image/home/Vector 2.png') }}" 
          class="absolute z-10 h-full top-10 hidden lg:block bottom-0 w-full" 
          alt="" data-aos="fade-in">

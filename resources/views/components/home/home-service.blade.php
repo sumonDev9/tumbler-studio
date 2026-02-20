@@ -19,14 +19,14 @@
             </div>
         </div>
 
-        <div class="flex relative z-20 overflow-x-auto pb-4 mb-8 no-scrollbar gap-4 justify-start md:justify-center" data-aos="fade-up" data-aos-delay="200">
+        <!-- <div class="flex relative z-20 overflow-x-auto pb-4 mb-8 no-scrollbar gap-4 justify-start md:justify-center" data-aos="fade-up" data-aos-delay="200">
             <button class="flex-shrink-0 bg-indigo-500 text-white px-6 py-2 rounded-full font-semibold shadow-md">Pre-production</button>
             <button class="flex-shrink-0 bg-indigo-500 text-white px-6 py-2 rounded-full font-semibold shadow-md">Production</button>
             <button class="flex-shrink-0 bg-rose-500 text-white px-6 py-2 rounded-full font-semibold shadow-md">Post-production</button>
             <button class="flex-shrink-0 bg-rose-500 text-white px-6 py-2 rounded-full font-semibold shadow-md">Co-production</button>
-        </div>
+        </div> -->
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 relative z-20 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:mt-36 lg:grid-cols-4 relative z-20 gap-6">
 
             <div class="relative group rounded-3xl h-80 overflow-hidden shadow-xl border-4 border-indigo-400" data-aos="zoom-in" data-aos-delay="100">
                 <img src="{{ asset('assets/image/home/servicee1.webp') }}" alt="Scripting" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -85,5 +85,15 @@
             </div>
 
         </div>
+
+            <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-8" data-aos="fade-up">
+        <a href="{{ url('/portfolio') }}"
+            class="relative text-white uppercase flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform">
+            <div class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
+                <img src="{{ asset('assets/image/home/icons8-service-50.png') }}" class="w-6 h-6" alt="" />
+            </div>
+            View Service
+        </a>
+    </div>
     </div>
 </section>
