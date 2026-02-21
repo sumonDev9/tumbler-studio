@@ -1,10 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TeamController;
+use App\Models\Team;
+
 
 Route::get('/', function () {
-    return view('page.home');
+    $teams = Team::all();
+    return view('page.home', compact('teams'));
 });
+
 Route::get('/about-us', function () {
     return view('page.about-us');
 });
@@ -33,6 +38,13 @@ Route::get('/service', function () {
     return view('page.service');
 });
 
+// Frontend Routes
 Route::get('/team', function () {
-    return view('page.team');
+    $teams = Team::all();
+    return view('page.team', compact('teams'));
+});
+
+// Admin Panel Routes with Security
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::resource('team', TeamController::class);
 });

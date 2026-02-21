@@ -13,74 +13,25 @@
     <div class="relative container mx-auto">
         <div class="swiper team-swiper">
             <div class="swiper-wrapper">
-                
+                @foreach($teams as $member)
                 <div class="swiper-slide flex flex-col items-center pb-12">
                     <div class="relative">
                         <div class="relative border-[10px] rounded-[37px] border-[#4D59C9] bg-white shadow-xl">
                             <div class="aspect-[3/4] overflow-hidden rounded-[1.8rem]">
-                                <img src="{{ asset('assets/image/team/profile1.png') }}" alt="Atin Nandi" class="w-full h-full object-cover border-2 border-[#59D5F3]">
+                                <img src="{{ asset('storage/'.$member->profile_image) }}" alt="Atin Nandi" class="w-full h-full object-cover border-2 border-[#59D5F3]">
                             </div>
                             <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#572BC6] text-white px-6 py-1.5 rounded-full font-bold z-10 whitespace-nowrap">
-                                Atin Nandi
+                                {{ $member->name }}
                             </div>
                         </div>
                         <div class="absolute bottom-0 left-0 w-full right-0">
                             <img src="{{ asset('assets/image/team/Frame.png') }}" class="w-full" alt="">
                         </div>
                     </div>
-                    <p class="mt-10 text-gray-800 text-xl text-center">Founder & Director</p>
+                    <p class="mt-10 text-gray-800 text-xl text-center">{{ $member->designation }}</p>
                 </div>
+                @endforeach
 
-                <div class="swiper-slide flex flex-col items-center pb-12">
-                    <div class="relative">
-                        <div class="relative border-[10px] rounded-[37px] border-[#4D59C9] bg-white shadow-xl">
-                            <div class="aspect-[3/4] overflow-hidden rounded-[1.8rem]">
-                                <img src="{{ asset('assets/image/team/profile2.png') }}" alt="Mitu mal" class="w-full h-full object-cover border-2 border-[#59D5F3]">
-                            </div>
-                            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#572BC6] text-white px-6 py-1.5 rounded-full font-bold z-10 whitespace-nowrap">
-                                Mitu mal
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 w-full right-0">
-                            <img src="{{ asset('assets/image/team/Frame.png') }}" class="w-full" alt="">
-                        </div>
-                    </div>
-                    <p class="mt-10 text-gray-800 text-xl text-center">HR Manager</p>
-                </div>
-
-                <div class="swiper-slide flex flex-col items-center pb-12">
-                    <div class="relative">
-                        <div class="relative border-[10px] rounded-[37px] border-[#4D59C9] bg-white shadow-xl">
-                            <div class="aspect-[3/4] overflow-hidden rounded-[1.8rem]">
-                                <img src="{{ asset('assets/image/team/profile3.png') }}" alt="Amit Dutta" class="w-full h-full object-cover border-2 border-[#59D5F3]">
-                            </div>
-                            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#572BC6] text-white px-6 py-1.5 rounded-full font-bold z-10 whitespace-nowrap">
-                                Amit Dutta
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 w-full right-0">
-                            <img src="{{ asset('assets/image/team/Frame.png') }}" class="w-full" alt="">
-                        </div>
-                    </div>
-                    <p class="mt-10 text-gray-800 text-xl text-center">Technical Head</p>
-                </div>
-
-                <div class="swiper-slide flex flex-col items-center pb-12">
-                    <div class="relative">
-                        <div class="relative border-[10px] rounded-[37px] border-[#4D59C9] bg-white shadow-xl">
-                            <div class="aspect-[3/4] overflow-hidden rounded-[1.8rem]">
-                                <img src="{{ asset('assets/image/team/profile4.png') }}" alt="Jit Kanjilal" class="w-full h-full object-cover border-2 border-[#59D5F3]">
-                            </div>
-                            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[#572BC6] text-white px-6 py-1.5 rounded-full font-bold z-10 whitespace-nowrap">
-                                Jit Kanjilal
-                            </div>
-                        </div>
-                        <div class="absolute bottom-0 left-0 w-full right-0">
-                            <img src="{{ asset('assets/image/team/Frame.png') }}" class="w-full" alt="">
-                        </div>
-                    </div>
-                    <p class="mt-10 text-gray-800 text-xl text-center">Software Engineer</p>
-                </div>
 
             </div>
 
