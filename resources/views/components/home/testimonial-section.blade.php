@@ -20,87 +20,30 @@
 
         <div class="swiper testimonial-slider lg:mt-20 2xl:mt-40 px-4" data-aos="fade-up" data-aos-delay="200">
             <div class="swiper-wrapper pt-20">
-                
+                @foreach($testimonials as $testi)
                 <div class="swiper-slide">
                     <div class="relative bg-white h-[300px] shadow-lg rounded-xl">
                         <img src="{{ asset('assets/image/home/bottom.png') }}" class="absolute right-0 bottom-0" alt="">
                         <div class="absolute -top-10 -left-5 w-60 h-40 bg-center bg-no-repeat bg-contain"
                             style="background-image: url('{{ asset('assets/image/home/Group 184.png') }}');">
                             <div class="text-white text-center mt-12 leading-tight">
-                                <p class="font-semibold text-lg">Rahul Sharma</p>
+                                <p class="font-semibold text-lg">{{ $testi->name }}</p>
                             </div>
                             <img src="{{ asset('assets/image/home/Group 83.png') }}" class="absolute right-5 bottom-10" alt="">
                         </div>
                         <div class="absolute right-6 -top-10">
-                            <img src="{{ asset('assets/image/home/boy 1.png') }}"
+                            <img src="{{ $testi->image ? asset('storage/'.$testi->image) : 'https://ui-avatars.com/api/?name='.$testi->name }}"
                                 class="w-20 bg-blue-700 h-20 border-4 border-white rounded-full" alt="">
                         </div>
                         <div class="px-5 pb-4 pt-24">
-                            <p class="text-base lg:text-lg">“Working with Dipankar was an amazing experience. The
-                                website design was clean, modern, and exactly what our brand needed. Highly
-                                recommended!”</p>
+                            <p class="text-base lg:text-lg">“{{ $testi->review }}”</p>
                             <div class="flex items-center mt-10 gap-1 text-yellow-400 text-xs">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i>
+                               @for($i=0; $i<$testi->rating; $i++) <i class="fas fa-star"></i> @endfor
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="swiper-slide">
-                    <div class="relative bg-white h-[300px] shadow-lg rounded-xl">
-                        <img src="{{ asset('assets/image/home/bottom.png') }}" class="absolute right-0 bottom-0" alt="">
-                        <div class="absolute -top-10 -left-5 w-60 h-40 bg-center bg-no-repeat bg-contain"
-                            style="background-image: url('{{ asset('assets/image/home/Group 184.png') }}');">
-                            <div class="text-white text-center mt-12 leading-tight">
-                                <p class="font-semibold text-lg">Rahul Sharma</p>
-                            </div>
-                            <img src="{{ asset('assets/image/home/Group 83.png') }}" class="absolute right-5 bottom-10" alt="">
-                        </div>
-                        <div class="absolute right-6 -top-10">
-                            <img src="{{ asset('assets/image/home/boy 1.png') }}"
-                                class="w-20 bg-blue-700 h-20 border-4 border-white rounded-full" alt="">
-                        </div>
-                        <div class="px-5 pb-4 pt-24">
-                            <p class="text-base lg:text-lg">“Working with Dipankar was an amazing experience. The
-                                website design was clean, modern, and exactly what our brand needed. Highly
-                                recommended!”</p>
-                            <div class="flex items-center mt-10 gap-1 text-yellow-400 text-xs">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>git 
-
-                <div class="swiper-slide">
-                    <div class="relative bg-white h-[300px] shadow-lg rounded-xl">
-                        <img src="{{ asset('assets/image/home/bottom.png') }}" class="absolute right-0 bottom-0" alt="">
-                        <div class="absolute -top-10 -left-5 w-60 h-40 bg-center bg-no-repeat bg-contain"
-                            style="background-image: url('{{ asset('assets/image/home/Group 184.png') }}');">
-                            <div class="text-white text-center mt-12 leading-tight">
-                                <p class="font-semibold text-lg">Rahul Sharma</p>
-                            </div>
-                            <img src="{{ asset('assets/image/home/Group 83.png') }}" class="absolute right-5 bottom-10" alt="">
-                        </div>
-                        <div class="absolute right-6 -top-10">
-                            <img src="{{ asset('assets/image/home/boy 1.png') }}"
-                                class="w-20 bg-blue-700 h-20 border-4 border-white rounded-full" alt="">
-                        </div>
-                        <div class="px-5 pb-4 pt-24">
-                            <p class="text-base lg:text-lg">“Working with Dipankar was an amazing experience. The
-                                website design was clean, modern, and exactly what our brand needed. Highly
-                                recommended!”</p>
-                            <div class="flex items-center mt-10 gap-1 text-yellow-400 text-xs">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                    class="fa-solid fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
 

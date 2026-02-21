@@ -3,12 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VisionGalleryController;
+use App\Http\Controllers\TestimonialController;
 use App\Models\Team;
 use App\Models\VisionGallery;
+use App\Models\Testimonial;
 
 Route::get('/', function () {
     $teams = Team::all();
-    return view('page.home', compact('teams'));
+    $testimonials = Testimonial::latest()->get();
+    return view('page.home', compact('teams', 'testimonials'));
 });
 
 Route::get('/about-us', function () {
@@ -54,4 +57,5 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     // Eikhane 'team' namer resource route define kora holo
     Route::resource('team', TeamController::class);
      Route::resource('vision', VisionGalleryController::class);
+      Route::resource('testimonial', TestimonialController::class);
 });
