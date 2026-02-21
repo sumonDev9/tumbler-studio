@@ -52,7 +52,7 @@
                         <div class="w-8 h-8 rounded-full bg-[#FE3668] flex items-center justify-center flex-shrink-0 mr-3 shadow-md">
                             <img src="{{ asset('assets/image/footer/Group 27.png') }}" alt="" />
                         </div>
-                        <span class="text-sm text-gray-200">7895698996</span>
+                        <span class="text-sm text-gray-200">9163630136</span>
                     </li>
                     <li class="flex items-center">
                         <div class="w-8 h-8 rounded-full bg-[#FE3668] flex items-center justify-center flex-shrink-0 mr-3 shadow-md">

@@ -12,14 +12,7 @@
         <div data-aos="fade-up" data-aos-delay="200"
             class="space-y-4 text-[#000000] text-sm md:text-lg leading-relaxed px-4">
             <p>
-                Our journey began with a single spark of imagination. A belief that stories deserve to move,
-                breathe, and inspire. We saw animation not just as motion, but as emotion. Every idea started as a
-                blank frame. Every frame carried endless possibility.
-            </p>
-            <p data-aos="fade-up" data-aos-delay="400" class="font-medium">
-                We are a creative animation studio driven by storytelling, imagination, and innovation. What began
-                as a simple idea—to bring stories to life through motion—has grown into a space where creativity
-                knows no limits and every frame carries meaning.
+              we started our journey since 2019 and continuing successfully and growing gradually. throughout our glorious journey we are able to set a mark in the industry. we already have successfully  completed & delivered so many prestigious international shows and products with the help of our efficient and dedicated team.Thanks to our team for all the remarkable achievements and to make this organisation as a highly trusted  destination for all the clients.
             </p>
         </div>
 
@@ -60,10 +53,10 @@
                 style="animation-direction: reverse;">
                 <span>VFX <i class="fa-solid fa-star text-rose-400 mx-4"></i></span>
                 <span>Composition <i class="fa-solid fa-star text-rose-400 mx-4"></i></span>
-                <span>People Modelling <i class="fa-solid fa-star text-rose-400 mx-4"></i></span>
+                <span>Props Modeling  <i class="fa-solid fa-star text-rose-400 mx-4"></i></span>
                 <span>VFX <i class="fa-solid fa-star text-rose-400 mx-4"></i></span>
                 <span>Composition <i class="fa-solid fa-star text-rose-400 mx-4"></i></span>
-                <span>People Modelling <i class="fa-solid fa-star text-rose-400 mx-4"></i></span>
+                <span>Props Modeling <i class="fa-solid fa-star text-rose-400 mx-4"></i></span>
             </div>
         </div>
     </div>

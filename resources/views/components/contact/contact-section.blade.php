@@ -80,19 +80,19 @@
                         <div class="w-10 h-10 bg-[#FE3668] shrink-0 rounded-full flex justify-center items-center">
                             <img src="{{ asset('assets/image/footer/Group 26.png') }}" alt="" />
                         </div>
-                        <p class="text-[#000000] text-xl">23/B Creative Avenue, Dhanmondi</p>
+                        <p class="text-[#000000] text-xl">Champadanga-dankuni road, Gobra, chanditala,wb-712702</p>
                     </div>
                     <div class="flex items-center gap-4" data-aos="fade-up" data-aos-delay="600">
                         <div class="w-10 h-10 bg-[#FE3668] shrink-0 rounded-full flex justify-center items-center">
                             <img src="{{ asset('assets/image/footer/Group 27.png') }}" alt="" />
                         </div>
-                        <p class="text-[#000000] text-xl">7895698996</p>
+                        <p class="text-[#000000] text-xl">9163630136</p>
                     </div>
                     <div class="flex items-center gap-4" data-aos="fade-up" data-aos-delay="700">
                         <div class="w-10 h-10 bg-[#FE3668] shrink-0 rounded-full flex justify-center items-center">
                             <img src="{{ asset('assets/image/footer/Group 28.png') }}" alt="" />
                         </div>
-                        <p class="text-[#000000] text-xl">infoanimation@gmail.com</p>
+                        <p class="text-[#000000] text-xl">info@tstani.com</p>
                     </div>
                 </div>
             </div>
