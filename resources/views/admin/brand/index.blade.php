@@ -37,25 +37,32 @@
 <div id="brandModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex justify-center items-center z-[100] p-4">
     <div class="glass-panel w-full max-w-md rounded-3xl p-8 border border-white/20 shadow-2xl">
         <h3 id="modalTitle" class="text-xl font-bold mb-6 dark:text-white text-center">Add Brand Logo</h3>
-        <form id="brandForm">
-            @csrf
-            <input type="hidden" id="brand_id" name="id">
-            <div class="mb-6">
-                <label class="block mb-2 text-sm dark:text-gray-300 font-medium text-center">Select Logo (PNG/SVG/WebP)</label>
-                <div class="relative border-2 border-dashed border-white/10 rounded-2xl p-6 text-center hover:border-primary transition cursor-pointer">
-                    <input type="file" name="logo" id="logo" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                    <i class="fas fa-cloud-upload-alt text-3xl text-primary mb-2"></i>
-                    <p class="text-xs text-slate-400">Click or drag image to upload</p>
-                </div>
-            </div>
-            <div class="flex justify-end gap-3 pt-2">
-                <button type="button" onclick="closeModal()" class="px-6 py-2 text-slate-500 font-semibold transition hover:text-slate-700">Cancel</button>
-                <button type="submit" id="submitBtn" class="bg-primary text-white px-8 py-2 rounded-xl flex items-center gap-3 font-semibold shadow-lg min-w-[120px] justify-center transition">
-                    <span id="btnText">Save</span>
-                    <div id="loader" class="hidden animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></div>
-                </button>
-            </div>
-        </form>
+<form id="brandForm">
+    @csrf
+    <input type="hidden" id="brand_id" name="id">
+    
+    <div id="multiUploadField" class="mb-6">
+        <label class="block mb-2 text-sm dark:text-gray-300 font-medium text-center">Select Multiple Logos (jpeg/png/jpg/svg/webp)</label>
+        <div class="relative border-2 border-dashed border-white/10 rounded-2xl p-6 text-center hover:border-primary transition cursor-pointer">
+            <input type="file" name="logos[]" id="logos" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+            <i class="fas fa-images text-3xl text-primary mb-2"></i>
+            <p class="text-xs text-slate-400">Click or drag images to upload multiple</p>
+        </div>
+    </div>
+
+    <div id="singleUploadField" class="hidden mb-6">
+        <label class="block mb-2 text-sm dark:text-gray-300 font-medium text-center">Update Logo</label>
+        <input type="file" name="logo" id="logo" class="w-full text-sm dark:text-gray-400">
+    </div>
+
+    <div class="flex justify-end gap-3 pt-2">
+        <button type="button" onclick="closeModal()" class="px-6 py-2 text-slate-500 font-semibold transition">Cancel</button>
+        <button type="submit" id="submitBtn" class="bg-primary text-white px-8 py-2 rounded-xl flex items-center gap-3 font-semibold shadow-lg min-w-[120px] justify-center transition">
+            <span id="btnText">Save</span>
+            <div id="loader" class="hidden animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></div>
+        </button>
+    </div>
+</form>
     </div>
 </div>
 
@@ -68,7 +75,14 @@
 <script>
 toastr.options = { "closeButton": true, "progressBar": true, "positionClass": "toast-top-right" };
 
-function openModal() { $('#brandForm')[0].reset(); $('#brand_id').val(''); $('#modalTitle').text('Add Brand Logo'); $('#brandModal').removeClass('hidden').addClass('flex'); }
+function openModal() { 
+    $('#brandForm')[0].reset(); 
+    $('#brand_id').val(''); 
+    $('#multiUploadField').removeClass('hidden'); // Add mode e multiple
+    $('#singleUploadField').addClass('hidden');
+    $('#modalTitle').text('Add Multiple Brand Logos');
+    $('#brandModal').removeClass('hidden').addClass('flex'); 
+}
 function closeModal() { $('#brandModal').addClass('hidden').removeClass('flex'); }
 
 $('#brandForm').on('submit', function(e) {
@@ -100,6 +114,8 @@ $('#brandForm').on('submit', function(e) {
 function editBrand(id) {
     $.get(`/admin/brand/${id}/edit`, function(data) {
         $('#brand_id').val(data.id);
+        $('#multiUploadField').addClass('hidden'); // Edit mode e single
+        $('#singleUploadField').removeClass('hidden');
         $('#modalTitle').text('Update Brand Logo');
         $('#brandModal').removeClass('hidden').addClass('flex');
     });

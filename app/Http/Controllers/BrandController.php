@@ -1,3 +1,4 @@
+<?php 
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
@@ -13,15 +14,21 @@ class BrandController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'logo' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:5120',
+            'logos' => 'required',
+            'logos.*' => 'image|mimes:jpeg,png,jpg,svg,webp|max:5120', // Protiti image 5MB max
         ]);
 
-        $path = $request->file('logo')->store('brands', 'public');
-        Brand::create(['logo' => $path]);
+        if ($request->hasFile('logos')) {
+            foreach ($request->file('logos') as $file) {
+                $path = $file->store('brands', 'public');
+                Brand::create(['logo' => $path]);
+            }
+        }
 
-        return response()->json(['success' => 'Brand logo added successfully!']);
+        return response()->json(['success' => 'All brand logos added successfully!']);
     }
 
+    // Edit logic thakbe kintu single image update-er jonno
     public function edit(Brand $brand) {
         return response()->json($brand);
     }

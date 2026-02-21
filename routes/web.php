@@ -8,16 +8,19 @@ use App\Http\Controllers\BrandController;
 use App\Models\Team;
 use App\Models\VisionGallery;
 use App\Models\Testimonial;
+use App\Models\Brand;
 
 Route::get('/', function () {
     $teams = Team::all();
     $testimonials = Testimonial::latest()->get();
-    return view('page.home', compact('teams', 'testimonials'));
+    $brands = Brand::latest()->get();
+    return view('page.home', compact('teams', 'testimonials', 'brands'));
 });
 
 Route::get('/about-us', function () {
-    $visions = VisionGallery::latest()->get(); 
-    return view('page.about-us', compact('visions'));
+    $visions = VisionGallery::latest()->get();
+    $brands = Brand::latest()->get();
+    return view('page.about-us', compact('visions', 'brands'));
 });
 
 Route::get('/career', function () {

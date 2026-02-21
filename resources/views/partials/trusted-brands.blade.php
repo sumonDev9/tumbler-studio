@@ -28,7 +28,7 @@
             @foreach($brands as $brand)
             <div class="swiper-slide">
                 <div class="w-full mx-2 h-56 bg-orange-50 rounded-3xl flex items-center justify-center p-8 transition-transform hover:scale-105 border border-transparent hover:border-orange-200">
-                    <img src="{{ asset('storage/'.$brand->logo) }}" alt="Logo" class="max-h-full max-w-full grayscale hover:grayscale-0 transition-all">
+                    <img src="{{ asset('storage/'.$brand->logo) }}" alt="Logo" class="max-h-full max-w-full transition-all">
                 </div>
             </div>
         @endforeach
