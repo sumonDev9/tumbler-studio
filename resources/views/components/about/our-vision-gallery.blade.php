@@ -28,21 +28,13 @@
 
             <div class="swiper gallerySwiper relative pb-16">
                 <div class="swiper-wrapper">
+                    @foreach($visions as $vision)
                     <div class="swiper-slide px-2">
                         <div class="border-4 border-white/30 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                            <img class="w-full h-[350px] object-cover" src="{{ asset('assets/image/home/imgg1.jpeg') }}" alt="Gallery 1" />
+                            <img class="w-full h-[350px] object-cover" src="{{ asset('storage/'.$vision->image) }}" alt="Gallery 1" />
                         </div>
                     </div>
-                    <div class="swiper-slide px-2">
-                        <div class="border-4 border-white/30 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                            <img class="w-full h-[350px] object-cover" src="{{ asset('assets/image/home/imgg2.jpeg') }}" alt="Gallery 2" />
-                        </div>
-                    </div>
-                    <div class="swiper-slide px-2">
-                        <div class="border-4 border-white/30 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                            <img class="w-full h-[350px] object-cover" src="{{ asset('assets/image/home/imgg3.jpeg') }}" alt="Gallery 1" />
-                        </div>
-                    </div>
+                    @endforeach
               
                 </div>
 
