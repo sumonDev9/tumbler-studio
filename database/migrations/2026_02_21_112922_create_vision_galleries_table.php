@@ -13,7 +13,6 @@ public function up(): void
 {
     Schema::create('vision_galleries', function (Blueprint $table) {
         $table->id();
-        $table->string('title')->nullable();
         $table->string('image');
         $table->timestamps();
     });

@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\VisionGalleryController;
 use App\Models\Team;
-
+use App\Models\VisionGallery;
 
 Route::get('/', function () {
     $teams = Team::all();
@@ -11,7 +12,8 @@ Route::get('/', function () {
 });
 
 Route::get('/about-us', function () {
-    return view('page.about-us');
+    $visions = VisionGallery::latest()->get(); 
+    return view('page.about-us', compact('visions'));
 });
 
 Route::get('/career', function () {
@@ -45,6 +47,13 @@ Route::get('/team', function () {
 });
 
 // Admin Panel Routes with Security
-Route::middleware(['auth'])->prefix('admin')->group(function () {
+
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    // Team Management
     Route::resource('team', TeamController::class);
+    
+    // Vision Gallery Management
+    Route::resource('vision', VisionGalleryController::class);
+    
 });

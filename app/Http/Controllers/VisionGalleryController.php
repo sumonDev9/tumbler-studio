@@ -12,17 +12,16 @@ class VisionGalleryController extends Controller
         return view('admin.vision.index', compact('items'));
     }
 
-    public function store(Request $request) {
-        $request->validate([
-            'title' => 'nullable|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
-        ]);
+public function store(Request $request) {
+    $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:10240',
+    ]);
 
-        $path = $request->file('image')->store('vision', 'public');
-        VisionGallery::create(['title' => $request->title, 'image' => $path]);
+    $path = $request->file('image')->store('vision', 'public');
+    VisionGallery::create(['image' => $path]); // Title bad dewa hoyeche
 
-        return response()->json(['success' => 'Gallery image added successfully!']);
-    }
+    return response()->json(['success' => 'Gallery image added successfully!']);
+}
 
     public function edit(VisionGallery $vision) {
         return response()->json($vision);
