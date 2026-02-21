@@ -25,42 +25,14 @@
 
     <div class="swiper trusted-brand-slider px-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
         <div class="swiper-wrapper">
-
+            @foreach($brands as $brand)
             <div class="swiper-slide">
                 <div class="w-full mx-2 h-56 bg-orange-50 rounded-3xl flex items-center justify-center p-8 transition-transform hover:scale-105 border border-transparent hover:border-orange-200">
-                    <img src="https://via.placeholder.com/150x80?text=KARANDASH" alt="Logo" class="max-h-full max-w-full grayscale hover:grayscale-0 transition-all">
+                    <img src="{{ asset('storage/'.$brand->logo) }}" alt="Logo" class="max-h-full max-w-full grayscale hover:grayscale-0 transition-all">
                 </div>
             </div>
+        @endforeach
 
-            <div class="swiper-slide">
-                <div class="w-full mx-2 h-56 bg-orange-50 rounded-3xl flex items-center justify-center p-8 transition-transform hover:scale-105 border border-transparent hover:border-orange-200">
-                    <img src="https://via.placeholder.com/150x80?text=WPC" alt="Logo" class="max-h-full max-w-full grayscale hover:grayscale-0 transition-all">
-                </div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="w-full mx-2 h-56 bg-orange-50 rounded-3xl flex items-center justify-center p-8 transition-transform hover:scale-105 border border-transparent hover:border-orange-200">
-                    <img src="https://via.placeholder.com/150x80?text=ALOTTABIT" alt="Logo" class="max-h-full max-w-full grayscale hover:grayscale-0 transition-all">
-                </div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="w-full mx-2 h-56 bg-orange-50 rounded-3xl flex items-center justify-center p-8 transition-transform hover:scale-105 border border-transparent hover:border-orange-200">
-                    <img src="https://via.placeholder.com/150x80?text=AMUSE" alt="Logo" class="max-h-full max-w-full grayscale hover:grayscale-0 transition-all">
-                </div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="w-full mx-2 h-56 bg-orange-50 rounded-3xl flex items-center justify-center p-8 transition-transform hover:scale-105 border border-transparent hover:border-orange-200">
-                    <img src="https://via.placeholder.com/150x80?text=BIRDLAND" alt="Logo" class="max-h-full max-w-full grayscale hover:grayscale-0 transition-all">
-                </div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="w-full mx-2 h-56 bg-orange-50 rounded-3xl flex items-center justify-center p-8 transition-transform hover:scale-105 border border-transparent hover:border-orange-200">
-                    <img src="https://via.placeholder.com/150x80?text=NEVERLAND" alt="Logo" class="max-h-full max-w-full grayscale hover:grayscale-0 transition-all">
-                </div>
-            </div>
 
         </div>
     </div>

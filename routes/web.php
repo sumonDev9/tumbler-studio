@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VisionGalleryController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\BrandController;
 use App\Models\Team;
 use App\Models\VisionGallery;
 use App\Models\Testimonial;
@@ -58,4 +59,5 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('team', TeamController::class);
      Route::resource('vision', VisionGalleryController::class);
       Route::resource('testimonial', TestimonialController::class);
+       Route::resource('brand', BrandController::class);
 });
