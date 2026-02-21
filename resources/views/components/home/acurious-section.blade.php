@@ -1,6 +1,6 @@
 <section class="relative bg-[#572BC6] min-h-[550px]  py-10 overflow-hidden">
     <img src="{{ asset('assets/image/home/Group 180.png') }}" 
-         class="absolute top-10 left-0 hidden lg:block w-[250px]" 
+         class="absolute top-10 left-0 2xl:left-32 hidden lg:block w-[250px]" 
          alt="" 
          data-aos="fade-right" 
          data-aos-duration="1000">

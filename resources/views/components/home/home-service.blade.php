@@ -87,7 +87,7 @@
         </div>
 
             <div class="mt-12 flex flex-col md:flex-row items-center justify-center gap-8" data-aos="fade-up">
-        <a href="{{ url('/portfolio') }}"
+        <a href="{{ url('/services') }}"
             class="relative text-white uppercase flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform">
             <div class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
                 <img src="{{ asset('assets/image/home/icons8-service-50.png') }}" class="w-6 h-6" alt="" />

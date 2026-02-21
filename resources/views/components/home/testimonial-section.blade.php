@@ -104,7 +104,7 @@
 
             </div>
 
-            <div class="flex justify-center gap-4 mt-10">
+            <div class="flex justify-center gap-4 my-10">
                 <div class="testimonial-prev cursor-pointer bg-white w-12 h-12 flex items-center justify-center rounded-full shadow-md hover:bg-[#CF0037] hover:text-white transition-all z-30">
                     <i class="fa-solid fa-arrow-left"></i>
                 </div>

@@ -11,6 +11,7 @@
 @include('partials.trusted-brands') 
 @include('components.home.our-team')
 @include('components.home.testimonial-section')
+@include('components.home.home-blog')
 
 
 

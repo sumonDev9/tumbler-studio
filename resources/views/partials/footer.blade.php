@@ -58,15 +58,15 @@
                         <div class="w-8 h-8 rounded-full bg-[#FE3668] flex items-center justify-center flex-shrink-0 mr-3 shadow-md">
                             <img src="{{ asset('assets/image/footer/Group 28.png') }}" alt="" />
                         </div>
-                        <span class="text-sm text-gray-200 break-all">infoanimation@gmail.com</span>
+                        <span class="text-sm text-gray-200 break-all">info@tstani.com</span>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="absolute bottom-10 lg:-bottom-4 2xl:bottom-1 left-1/2 -translate-x-1/2 z-30 pointer-events-none" 
-         data-aos="zoom-in-up" data-aos-anchor-placement="top-bottom" data-aos-duration="1200">
+    <div class="absolute -bottom-4 2xl:bottom-1 left-1/2 -translate-x-1/2 z-30 pointer-events-none" 
+         >
         <img src="{{ asset('assets/image/home/baby.png') }}" alt="Mascot" class="w-32 md:w-40 drop-shadow-2xl" />
     </div>
 
@@ -78,6 +78,6 @@
 <div class="bg-white py-6 text-center">
     <p class="text-sm font-semibold text-gray-800">
         © 2026 Tumbler Studios. All Rights Reserved. Design and Development By
-        Insu Creation Private Limited
+        <a href="https://insucreation.in/">Insu Creation Private Limited</a>
     </p>
 </div>

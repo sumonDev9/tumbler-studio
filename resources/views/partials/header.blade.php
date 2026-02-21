@@ -28,6 +28,7 @@
                     </svg>
                 </a>
                 <a href="{{ url('/career') }}" class="hover:text-yellow-300 transition">Careers</a>
+                <a href="{{ url('/team') }}" class="hover:text-yellow-300 transition">Our Team</a>
                 <a href="{{ url('/blog') }}" class="hover:text-yellow-300 transition">Blog</a>
                 <a href="{{ url('/contact-us') }}" class="hover:text-yellow-300 transition">Contact Us</a>
             </div>
@@ -102,6 +103,7 @@
             <a href="{{ url('/services') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Services</a>
             <a href="{{ url('/portfolio') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Portfolio</a>
             <a href="{{ url('/career') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Careers</a>
+            <a href="{{ url('/team') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Our Team</a>
             <a href="{{ url('/blog') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Blog</a>
             <a href="{{ url('/contact-us') }}" class="text-lg font-medium border-b border-white/5 pb-2 hover:text-[#FE3668] transition">Contact Us</a>
         </nav>

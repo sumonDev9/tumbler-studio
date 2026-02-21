@@ -42,7 +42,7 @@
                 </h2>
                 <p class="lg:py-6 lg:text-lg text-black py-3">
                     Are you passionate about animation? Do you dream of bringing
-                    characters and stories to life? At McCoy Animation, we offer you
+                    characters and stories to life? At Tumbler Studios, we offer you
                     the canvas to paint your imagination, the technology to enhance
                     your skills, and the opportunity to be a part of an animation
                     family that values creativity, innovation, and storytelling.
