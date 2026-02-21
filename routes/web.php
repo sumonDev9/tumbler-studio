@@ -49,11 +49,9 @@ Route::get('/team', function () {
 // Admin Panel Routes with Security
 
 
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    // Team Management
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    // Eikhane 'team' namer resource route define kora holo
     Route::resource('team', TeamController::class);
-    
-    // Vision Gallery Management
-    Route::resource('vision', VisionGalleryController::class);
-    
+     Route::resource('vision', VisionGalleryController::class);
 });
