@@ -52,7 +52,19 @@
 
                     <textarea name="message" rows="4" placeholder="Message"
                         class="w-full px-6 resize-none py-4 rounded-3xl border border-[#572BC6] shadow-[0_4px_24_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
+@php
+    $num1 = rand(1, 10);
+    $num2 = rand(1, 10);
+    session()->put('math_captcha', $num1 + $num2);
+@endphp
 
+<div class="mt-4 flex items-center justify-start gap-4" data-aos="fade-up" data-aos-delay="500">
+    <label class="text-[#000000] font-bold whitespace-nowrap">
+        Security Check: <span class="text-[#CF0037]">{{ $num1 }} + {{ $num2 }}</span> =
+    </label>
+    <input type="number" name="math_captcha" placeholder="?" required
+        class="w-24 px-4 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400" />
+</div>
                     <div class="mt-20 flex justify-center items-center">
                         <button type="submit"
                             class="submit-btn relative flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] text-xl pl-10 pr-6 py-3 rounded-full text-white shadow-lg font-bold hover:scale-105 transition transform"
