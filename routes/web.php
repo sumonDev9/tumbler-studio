@@ -5,6 +5,8 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VisionGalleryController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ContactController;
+
 use App\Models\Team;
 use App\Models\VisionGallery;
 use App\Models\Testimonial;
@@ -53,14 +55,17 @@ Route::get('/team', function () {
     return view('page.team', compact('teams'));
 });
 
+Route::post('/contact-submit', [ContactController::class, 'store'])->name('contact.submit');
+
 // Admin Panel Routes with Security
-
-
-
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     // Eikhane 'team' namer resource route define kora holo
     Route::resource('team', TeamController::class);
      Route::resource('vision', VisionGalleryController::class);
       Route::resource('testimonial', TestimonialController::class);
        Route::resource('brand', BrandController::class);
+
+    Route::get('contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('contacts/{id}', [ContactController::class, 'show'])->name('admin.contacts.show');
+    Route::delete('contacts/{id}', [ContactController::class, 'destroy'])->name('admin.contacts.destroy');
 });

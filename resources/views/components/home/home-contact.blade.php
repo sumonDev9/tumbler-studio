@@ -15,16 +15,17 @@
 
             <form action="#" class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Enter Name"
+                    <input type="text" name="name" placeholder="Enter Name"
                         class="w-full px-6 py-4 rounded-full bg-white text-gray-700 focus:outline-none shadow-inner">
-                    <input type="email" placeholder="Enter Email"
+                    <input type="email" name="email" placeholder="Enter Email"
                         class="w-full px-6 py-4 rounded-full bg-white text-gray-700 focus:outline-none shadow-inner">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Enter Phone Number"
+                    <input type="text" name="phone" placeholder="Enter Phone Number"
                         class="w-full px-6 py-4 rounded-full bg-white text-gray-700 focus:outline-none shadow-inner">
                     <select
+                        name="subject"
                         class="w-full px-6 py-4 rounded-full bg-white text-gray-400 focus:outline-none shadow-inner appearance-none">
                         <option>Select Subject</option>
                         <option>Web Design</option>
@@ -32,7 +33,7 @@
                     </select>
                 </div>
 
-                <textarea placeholder="Message" rows="4"
+                <textarea name="message" placeholder="Message" rows="4"
                     class="w-full px-6 py-4 rounded-[30px] bg-white text-gray-700 focus:outline-none shadow-inner resize-none"></textarea>
 
                 <div class="flex justify-center md:justify-start">
@@ -41,7 +42,8 @@
                         <div class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
                             <img src="{{ asset('assets/image/home/Group 1.png') }}" alt="" />
                         </div>
-                        SEND MESSAGE
+                        <span class="btn-text">SEND MESSAGE</span>
+                        <span class="loading-spinner hidden ml-2"><i class="fa-solid fa-spinner fa-spin"></i></span>
                     </button>
                 </div>
             </form>

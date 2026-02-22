@@ -79,7 +79,8 @@
 
     <!-- AOS -->
      <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <!-- Custom JS -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
@@ -95,13 +96,73 @@
         once: true
     });
 
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     flatpickr("#appointmentDate", {
-    //         minDate: "today", // Disables past dates
-    //         dateFormat: "Y-m-d", // Date format
-    //         disableMobile: "true" // Ensures the flatpickr UI shows up on mobile
-    //     });
-    // });
+  document.querySelectorAll('.ajax-contact-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let submitBtn = this.querySelector('.submit-btn');
+        let btnText = this.querySelector('.btn-text');
+        let spinner = this.querySelector('.loading-spinner');
+        
+        // Loading state
+        submitBtn.disabled = true;
+        btnText.innerText = "SENDING...";
+        spinner.classList.remove('hidden');
+
+        let formData = new FormData(this);
+
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Restore button
+            submitBtn.disabled = false;
+            btnText.innerText = "SEND MESSAGE";
+            spinner.classList.add('hidden');
+
+            if(data.success) {
+                this.reset(); // Form clear korbe
+                
+                // Toast Alert
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: data.message,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+
+                // Confetti Animation (Paper Burst)
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+        })
+        .catch(error => {
+            submitBtn.disabled = false;
+            btnText.innerText = "SEND MESSAGE";
+            spinner.classList.add('hidden');
+            
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'error',
+                title: 'Something went wrong!',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        });
+    });
+});
     </script>
 
 </body>

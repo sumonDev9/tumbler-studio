@@ -28,20 +28,21 @@
                     dedicated to transforming passion into professional skills.
                 </p>
 
-                <form action="#" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" placeholder="Enter Name"
+                <form action="{{ route('contact.submit') }}" method="POST" class="space-y-4 ajax-contact-form">
+                    @csrf
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" name="name" placeholder="Enter Name"
                             class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400" />
-                        <input type="email" placeholder="Enter Email"
+                        <input type="email" name="email" placeholder="Enter Email"
                             class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400" />
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <input id="phone" type="tel"
+                            <input id="phone" name="phone" type="tel"
                                 class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none" />
                         </div>
-                        <select
+                        <select name="subject"
                             class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white text-gray-400">
                             <option>Select Subject</option>
                             <option>2D Animation</option>
@@ -49,17 +50,18 @@
                         </select>
                     </div>
 
-                    <textarea rows="4" placeholder="Message"
+                    <textarea name="message" rows="4" placeholder="Message"
                         class="w-full px-6 resize-none py-4 rounded-3xl border border-[#572BC6] shadow-[0_4px_24_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
 
                     <div class="mt-20 flex justify-center items-center">
                         <button type="submit"
-                            class="hidden relative md:flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] text-xl pl-10 pr-6 py-3 rounded-full text-white shadow-lg font-bold hover:scale-105 transition transform"
+                            class="submit-btn relative flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] text-xl pl-10 pr-6 py-3 rounded-full text-white shadow-lg font-bold hover:scale-105 transition transform"
                             data-aos="zoom-in-up" data-aos-delay="600">
                             <div class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
                                 <img src="{{ asset('assets/image/portfolio/Group 160.png') }}" class="w-6" alt="" />
                             </div>
-                            SEND MESSAGE
+                            <span class="btn-text">SEND MESSAGE</span>
+                            <span class="loading-spinner hidden ml-2"><i class="fa-solid fa-spinner fa-spin"></i></span>
                         </button>
                     </div>
                 </form>
