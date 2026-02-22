@@ -1,5 +1,5 @@
 @extends('admin-panel::dashboard.layouts.app')
-
+@section('title', 'Testimonials')
 @section('content')
 <div class="fade-in p-4">
     <div class="flex justify-between items-center mb-6">
