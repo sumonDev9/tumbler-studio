@@ -6,46 +6,111 @@
         background-repeat: no-repeat;
     ">
     
-    <nav id="main-nav"
-        class="fixed top-0 left-0 w-full px-6 py-4 flex justify-between items-center z-50 transition-all duration-300">
-        <div class="container mx-auto flex justify-between items-center w-full">
-            <div class="flex items-center gap-2">
-                <div class="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
-                    <img src="{{ asset('assets/image/home/logo.png') }}" alt="Logo" />
-                </div>
+<nav id="main-nav"
+    class="fixed top-0 left-0 w-full px-6 py-4 flex justify-between items-center z-50 transition-all duration-300">
+    <div class="container mx-auto flex justify-between items-center w-full">
+        <div class="flex items-center gap-2">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center overflow-hidden">
+                <img src="{{ asset('assets/image/home/logo.png') }}" alt="" />
             </div>
+        </div>
 
-            <div class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide uppercase">
-                <a href="{{ url('/') }}" class="hover:text-yellow-300 transition">Home</a>
-                <a href="{{ url('/about-us') }}" class="hover:text-yellow-300 transition">About Us</a>
-                <a href="{{ url('/services') }}" class="hover:text-yellow-300 transition">Services</a>
-                <a href="{{ url('/portfolio') }}" class="hover:text-yellow-300 transition relative">
-                    Portfolio
-                    <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3"
-                            stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
-                    </svg>
-                </a>
-                <a href="{{ url('/career') }}" class="hover:text-yellow-300 transition">Careers</a>
-                <a href="{{ url('/team') }}" class="hover:text-yellow-300 transition">Our Team</a>
-                <a href="{{ url('/blog') }}" class="hover:text-yellow-300 transition">Blog</a>
-                <a href="{{ url('/contact-us') }}" class="hover:text-yellow-300 transition">Contact Us</a>
-            </div>
-
-            <a href="{{ url('/contact-us') }}"
-                class="hidden relative md:flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform">
-                <div class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
-                    <img src="{{ asset('assets/image/home/Group 1.png') }}" alt="icon" />
-                </div>
-                GET IN TOUCH
+        <div class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide uppercase text-white">
+            {{-- Home --}}
+            <a href="{{ url('/') }}" class="hover:text-yellow-300 transition relative {{ request()->is('/') ? 'text-yellow-300' : '' }}">
+                Home
+                @if(request()->is('/'))
+                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                @endif
             </a>
 
-            <button id="menu-toggle" class="lg:hidden text-2xl focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            {{-- About Us --}}
+            <a href="{{ url('/about-us') }}" class="hover:text-yellow-300 transition relative {{ request()->is('about-us') ? 'text-yellow-300' : '' }}">
+                About Us
+                @if(request()->is('about-us'))
+                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                @endif
+            </a>
+
+            {{-- Services --}}
+            <a href="{{ url('/service') }}" class="hover:text-yellow-300 transition relative {{ request()->is('services') ? 'text-yellow-300' : '' }}">
+                Services
+                @if(request()->is('service'))
+                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                @endif
+            </a>
+
+            {{-- Portfolio --}}
+            <a href="{{ url('/portfolio') }}" class="hover:text-yellow-300 transition relative {{ request()->is('portfolio') ? 'text-yellow-300' : '' }}">
+                Portfolio
+                @if(request()->is('portfolio'))
+                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                @endif
+            </a>
+
+            {{-- Careers --}}
+            <a href="{{ url('/career') }}" class="hover:text-yellow-300 transition relative {{ request()->is('career') ? 'text-yellow-300' : '' }}">
+                Careers
+                @if(request()->is('career'))
+                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                @endif
+            </a>
+
+            {{-- Our Team --}}
+            <a href="{{ url('/team') }}" class="hover:text-yellow-300 transition relative {{ request()->is('team') ? 'text-yellow-300' : '' }}">
+                Our Team
+                @if(request()->is('team'))
+                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                @endif
+            </a>
+
+            {{-- Blog --}}
+            <a href="{{ url('/blogs') }}" class="hover:text-yellow-300 transition relative {{ request()->is('blog') ? 'text-yellow-300' : '' }}">
+                Blog
+                @if(request()->is('blogs'))
+                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                @endif
+            </a>
+
+            {{-- Contact Us --}}
+            <a href="{{ url('/contact-us') }}" class="hover:text-yellow-300 transition relative {{ request()->is('contact-us') ? 'text-yellow-300' : '' }}">
+                Contact Us
+                @if(request()->is('contact-us'))
+                <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 40 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 3C5 3 5 5 9 5C13 5 13 1 17 1C21 1 21 5 25 5C29 5 29 1 33 1C37 1 37 3 39 3" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" />
+                </svg>
+                @endif
+            </a>
         </div>
-    </nav>
+
+        <a href="{{ url('/contact-us') }}"
+            class="hidden relative md:flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform text-white">
+            <div
+                class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
+                <img src="{{ asset('assets/image/home/Group 1.png') }}" alt="" />
+            </div>
+            GET IN TOUCH
+        </a>
+
+        <button id="menu-toggle" class="lg:hidden text-2xl focus:outline-none text-white">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+</nav>
 
     <div data-aos="fade-up" data-aos-duration="1000"
         class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between mt-20 md:mt-16 relative z-10 pb-32">
