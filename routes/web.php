@@ -7,6 +7,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactController;
 
+
 use App\Models\Team;
 use App\Models\VisionGallery;
 use App\Models\Testimonial;
@@ -59,7 +60,7 @@ Route::post('/contact-submit', [ContactController::class, 'store'])->name('conta
 
 // Admin Panel Routes with Security
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-    // Eikhane 'team' namer resource route define kora holo
+ // Eikhane 'team' namer resource route define kora holo
     Route::resource('team', TeamController::class);
      Route::resource('vision', VisionGalleryController::class);
       Route::resource('testimonial', TestimonialController::class);

@@ -95,74 +95,73 @@
         easing: 'ease-in-out',
         once: true
     });
-
-  document.querySelectorAll('.ajax-contact-form').forEach(form => {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        let submitBtn = this.querySelector('.submit-btn');
-        let btnText = this.querySelector('.btn-text');
-        let spinner = this.querySelector('.loading-spinner');
-        
-        // Loading state
-        submitBtn.disabled = true;
-        btnText.innerText = "SENDING...";
-        spinner.classList.remove('hidden');
-
-        let formData = new FormData(this);
-
-        fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Restore button
-            submitBtn.disabled = false;
-            btnText.innerText = "SEND MESSAGE";
-            spinner.classList.add('hidden');
-
-            if(data.success) {
-                this.reset(); // Form clear korbe
+document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.ajax-contact-form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Form reload howa theke atkay
                 
-                // Toast Alert
-                Swal.fire({
-                    toast: true,
-                    position: 'top-end',
-                    icon: 'success',
-                    title: data.message,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
+                let submitBtn = this.querySelector('.submit-btn');
+                let btnText = this.querySelector('.btn-text');
+                let spinner = this.querySelector('.loading-spinner');
+                
+                // Button Loading State
+                submitBtn.disabled = true;
+                btnText.innerText = "SENDING...";
+                if(spinner) spinner.classList.remove('hidden');
 
-                // Confetti Animation (Paper Burst)
-                confetti({
-                    particleCount: 150,
-                    spread: 70,
-                    origin: { y: 0.6 }
+                let formData = new FormData(this);
+
+                // Apnar dewa AJAX Fetch Code
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Accept': 'application/json' // Laravel validation er jonno important
+                    }
+                })
+                .then(response => response.json().then(data => ({ status: response.status, body: data })))
+                .then(({ status, body }) => {
+                    // Restore button
+                    submitBtn.disabled = false;
+                    btnText.innerText = "SEND MESSAGE";
+                    if(spinner) spinner.classList.add('hidden');
+
+                    if (status === 200 && body.success) {
+                        this.reset(); // Form clear korbe
+                        
+                        // Toast Alert Success
+                        Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: body.message, showConfirmButton: false, timer: 3000 });
+
+                        // Confetti Animation (Rongin Kagoj)
+                        confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                        
+                        // 2 second por page reload hobe jate notun math ashe
+                        setTimeout(() => location.reload(), 2000); 
+                    } else {
+                        // Validation Error ba Math Vul hole
+                        let errorMsg = body.message || 'Validation failed!';
+                        
+                        // Jodi Laravel validation error dey (jemon: phone number vul)
+                        if(body.errors) {
+                            errorMsg = Object.values(body.errors)[0][0]; // Prothom error message ta nibe
+                        }
+
+                        Swal.fire({ toast: true, position: 'top-end', icon: 'error', title: errorMsg, showConfirmButton: false, timer: 4000 });
+                    }
+                })
+                .catch(error => {
+                    // Network error ba onno kono jhamela hole
+                    submitBtn.disabled = false;
+                    btnText.innerText = "SEND MESSAGE";
+                    if(spinner) spinner.classList.add('hidden');
+                    
+                    Swal.fire({ toast: true, position: 'top-end', icon: 'error', title: 'Something went wrong!', showConfirmButton: false, timer: 3000 });
                 });
-            }
-        })
-        .catch(error => {
-            submitBtn.disabled = false;
-            btnText.innerText = "SEND MESSAGE";
-            spinner.classList.add('hidden');
-            
-            Swal.fire({
-                toast: true,
-                position: 'top-end',
-                icon: 'error',
-                title: 'Something went wrong!',
-                showConfirmButton: false,
-                timer: 3000
             });
         });
     });
-});
     </script>
 
 </body>

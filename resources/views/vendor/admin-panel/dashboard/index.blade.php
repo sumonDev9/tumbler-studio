@@ -5,138 +5,117 @@
 
 @section('content')
 
-<div class="mb-6 flex items-center text-sm text-gray-500 dark:text-gray-400">
-    <a href="{{ route('dashboard') }}" class="hover:text-emerald-500 transition">Home</a>
-    <i class="fa-solid fa-chevron-right text-xs mx-2"></i>
-    <span class="text-gray-800 dark:text-white font-medium">Dashboard</span>
-</div>
-
-<div id="skeletonLoader" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-    @for($i = 0; $i < 4; $i++)
-    <div class="glass-card rounded-2xl p-6 h-[160px] relative overflow-hidden skeleton border border-gray-200 dark:border-white/5">
-        <div class="w-12 h-12 rounded-xl bg-gray-200 dark:bg-white/10 mb-4"></div>
-        <div class="h-6 w-24 bg-gray-200 dark:bg-white/10 rounded mb-2"></div>
-        <div class="h-4 w-full bg-gray-200 dark:bg-white/10 rounded"></div>
+<div class="fade-in p-6">
+    <div class="mb-8">
+        <h2 class="text-3xl font-bold dark:text-white text-slate-800">Welcome Back, {{ auth()->user()->name }}!</h2>
+        <p class="text-slate-500 dark:text-gray-400">Here is what's happening with your website today.</p>
     </div>
-    @endfor
-</div>
 
-<div id="actualContent" class="hidden">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        
-        <div class="glass-card rounded-2xl p-6 shadow-xl dark:shadow-none hover:-translate-y-1 transition-transform duration-300">
-            <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 text-xl">
-                    <i class="fa-solid fa-users"></i>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="glass-card p-6 rounded-3xl border border-white/10 shadow-lg relative overflow-hidden">
+            <div class="flex items-center justify-between relative z-10">
+                <div>
+                    <p class="text-sm font-medium text-slate-500 dark:text-gray-400">Total Messages</p>
+                    <h3 class="text-2xl font-bold dark:text-white mt-1">{{ $total_messages }}</h3>
                 </div>
-                <span class="text-xs font-bold px-2 py-1 rounded-full bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-                    +{{ $stats['users_growth'] }}%
-                </span>
+                <div class="bg-blue-500/20 p-3 rounded-2xl text-blue-500">
+                    <i class="fas fa-envelope text-xl"></i>
+                </div>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-1">{{ number_format($stats['total_users']) }}</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Total Users</p>
-            <div class="mt-4 h-1.5 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
-                <div class="h-full rounded-full bg-emerald-500" style="width: 75%;"></div>
+            @if($unread_messages > 0)
+                <span class="absolute top-0 right-0 bg-red-500 text-white text-[10px] px-2 py-1 rounded-bl-xl font-bold">
+                    {{ $unread_messages }} NEW
+                </span>
+            @endif
+        </div>
+
+        <div class="glass-card p-6 rounded-3xl border border-white/10 shadow-lg">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-slate-500 dark:text-gray-400">Team Members</p>
+                    <h3 class="text-2xl font-bold dark:text-white mt-1">{{ $total_teams }}</h3>
+                </div>
+                <div class="bg-primary/20 p-3 rounded-2xl text-primary">
+                    <i class="fas fa-users text-xl"></i>
+                </div>
             </div>
         </div>
-        
-        <div class="glass-card rounded-2xl p-6 shadow-xl dark:shadow-none hover:-translate-y-1 transition-transform duration-300">
-            <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 text-xl">
-                    <i class="fa-solid fa-eye"></i>
+
+        <div class="glass-card p-6 rounded-3xl border border-white/10 shadow-lg">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-slate-500 dark:text-gray-400">Testimonials</p>
+                    <h3 class="text-2xl font-bold dark:text-white mt-1">{{ $total_testimonials }}</h3>
                 </div>
-                <span class="text-xs font-bold px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400">
-                    +{{ $stats['views_growth'] }}%
-                </span>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-1">{{ number_format($stats['total_views']) }}</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Total Views</p>
-            <div class="mt-4 h-1.5 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
-                <div class="h-full rounded-full bg-blue-500" style="width: 60%;"></div>
+                <div class="bg-yellow-500/20 p-3 rounded-2xl text-yellow-500">
+                    <i class="fas fa-star text-xl"></i>
+                </div>
             </div>
         </div>
-        
-        <div class="glass-card rounded-2xl p-6 shadow-xl dark:shadow-none hover:-translate-y-1 transition-transform duration-300">
-            <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-600 dark:text-orange-400 text-xl">
-                    <i class="fa-solid fa-coins"></i>
+
+        <div class="glass-card p-6 rounded-3xl border border-white/10 shadow-lg">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-medium text-slate-500 dark:text-gray-400">Trusted Brands</p>
+                    <h3 class="text-2xl font-bold dark:text-white mt-1">{{ $total_brands }}</h3>
                 </div>
-                <span class="text-xs font-bold px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400">
-                    +{{ $stats['revenue_growth'] }}%
-                </span>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-1">Rs.{{ number_format($stats['total_revenue']) }}</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Total Revenue</p>
-            <div class="mt-4 h-1.5 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
-                <div class="h-full rounded-full bg-orange-500" style="width: 85%;"></div>
-            </div>
-        </div>
-        
-        <div class="glass-card rounded-2xl p-6 shadow-xl dark:shadow-none hover:-translate-y-1 transition-transform duration-300">
-            <div class="flex items-center justify-between mb-4">
-                <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400 text-xl">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                <div class="bg-purple-500/20 p-3 rounded-2xl text-purple-500">
+                    <i class="fas fa-award text-xl"></i>
                 </div>
-                <span class="text-xs font-bold px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400">
-                    +{{ $stats['orders_growth'] }}%
-                </span>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-1">{{ number_format($stats['total_orders']) }}</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Total Orders</p>
-            <div class="mt-4 h-1.5 bg-gray-100 dark:bg-white/10 rounded-full overflow-hidden">
-                <div class="h-full rounded-full bg-purple-500" style="width: 70%;"></div>
             </div>
         </div>
     </div>
-    
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="glass-card rounded-2xl p-6 border border-gray-200 dark:border-white/5">
-            <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-6">Recent Activity</h3>
-            <div class="space-y-4">
-                @foreach($recentActivities as $index => $activity)
-                <div class="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition cursor-pointer border border-transparent hover:border-gray-200 dark:hover:border-white/5">
-                    <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm shadow-md" style="background: {{ $activity['bg_color'] }};">
-                        {!! $activity['icon'] ?? '<i class="fa-solid fa-bolt"></i>' !!}
-                    </div>
-                    <div class="flex-1">
-                        <p class="font-semibold text-gray-800 dark:text-white text-sm">{{ $activity['title'] }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ $activity['description'] }}</p>
-                    </div>
-                    <span class="text-xs text-gray-400">{{ $activity['time'] }}</span>
-                </div>
-                @endforeach
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 glass-panel rounded-3xl border border-white/10 shadow-xl overflow-hidden">
+            <div class="p-6 border-b border-white/5 flex justify-between items-center">
+                <h3 class="font-bold dark:text-white">Recent Messages</h3>
+                <a href="{{ route('admin.contacts.index') }}" class="text-xs text-primary font-bold hover:underline">View All</a>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <tbody class="divide-y divide-white/5">
+                        @forelse($recent_messages as $msg)
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="p-4">
+                                <p class="font-bold text-sm dark:text-gray-200">{{ $msg->name }}</p>
+                                <p class="text-xs text-slate-500">{{ $msg->email }}</p>
+                            </td>
+                            <td class="p-4 text-xs dark:text-gray-400">
+                                {{ Str::limit($msg->message, 50) }}
+                            </td>
+                            <td class="p-4 text-xs text-slate-500 text-right">
+                                {{ $msg->created_at->diffForHumans() }}
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="3" class="p-10 text-center text-slate-500">No recent messages.</td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
-        
-        <div class="glass-card rounded-2xl p-6 border border-gray-200 dark:border-white/5">
-            <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-6">Quick Actions</h3>
+
+        <div class="glass-panel rounded-3xl border border-white/10 shadow-xl p-6">
+            <h3 class="font-bold dark:text-white mb-6">Quick Actions</h3>
             <div class="grid grid-cols-2 gap-4">
-                <a href="{{ route('users.create') }}" class="p-6 rounded-xl text-center border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:border-emerald-200 dark:hover:border-emerald-500/30 transition group">
-                    <div class="text-3xl mb-3 text-emerald-500 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-user-plus"></i>
-                    </div>
-                    <p class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 text-sm">New User</p>
+                <a href="{{ route('team.index') }}" class="flex flex-col items-center p-4 bg-white/5 rounded-2xl hover:bg-primary/10 transition group">
+                    <i class="fas fa-user-plus text-primary mb-2 group-hover:scale-110 transition"></i>
+                    <span class="text-xs dark:text-gray-300">Add Team</span>
                 </a>
-                
-                <button class="p-6 rounded-xl text-center border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-500/10 hover:border-blue-200 dark:hover:border-blue-500/30 transition group">
-                    <div class="text-3xl mb-3 text-blue-500 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </div>
-                    <p class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 text-sm">New Post</p>
-                </button>
-                
-                <button class="p-6 rounded-xl text-center border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:border-orange-200 dark:hover:border-orange-500/30 transition group">
-                    <div class="text-3xl mb-3 text-orange-500 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-chart-line"></i>
-                    </div>
-                    <p class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-orange-600 dark:group-hover:text-orange-400 text-sm">View Reports</p>
-                </button>
-                
-                <a href="{{ route('settings.index') }}" class="p-6 rounded-xl text-center border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 hover:bg-purple-50 dark:hover:bg-purple-500/10 hover:border-purple-200 dark:hover:border-purple-500/30 transition group">
-                    <div class="text-3xl mb-3 text-purple-500 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-gear"></i>
-                    </div>
-                    <p class="font-semibold text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 text-sm">Settings</p>
+                <a href="{{ route('vision.index') }}" class="flex flex-col items-center p-4 bg-white/5 rounded-2xl hover:bg-primary/10 transition group">
+                    <i class="fas fa-image text-primary mb-2 group-hover:scale-110 transition"></i>
+                    <span class="text-xs dark:text-gray-300">Gallery</span>
+                </a>
+                <a href="{{ route('testimonial.index') }}" class="flex flex-col items-center p-4 bg-white/5 rounded-2xl hover:bg-primary/10 transition group">
+                    <i class="fas fa-comment-dots text-primary mb-2 group-hover:scale-110 transition"></i>
+                    <span class="text-xs dark:text-gray-300">Review</span>
+                </a>
+                <a href="{{ route('settings.index') }}" class="flex flex-col items-center p-4 bg-white/5 rounded-2xl hover:bg-primary/10 transition group">
+                    <i class="fas fa-cog text-primary mb-2 group-hover:scale-110 transition"></i>
+                    <span class="text-xs dark:text-gray-300">Settings</span>
                 </a>
             </div>
         </div>

@@ -44,9 +44,9 @@
                         </div>
                         <select name="subject"
                             class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white text-gray-400">
-                            <option>Select Subject</option>
-                            <option>2D Animation</option>
-                            <option>3D Modeling</option>
+                          <option value="">Select Subject</option>
+    <option value="Web Design">Web Design</option>
+    <option value="Development">Development</option>
                         </select>
                     </div>
 
@@ -55,13 +55,17 @@
 @php
     $num1 = rand(1, 10);
     $num2 = rand(1, 10);
-    session()->put('math_captcha', $num1 + $num2);
+    $correctAnswer = $num1 + $num2;
+    $encryptedAnswer = \Illuminate\Support\Facades\Crypt::encryptString((string)$correctAnswer);
 @endphp
 
 <div class="mt-4 flex items-center justify-start gap-4" data-aos="fade-up" data-aos-delay="500">
     <label class="text-[#000000] font-bold whitespace-nowrap">
         Security Check: <span class="text-[#CF0037]">{{ $num1 }} + {{ $num2 }}</span> =
     </label>
+    
+    <input type="hidden" name="captcha_hash" value="{{ $encryptedAnswer }}">
+    
     <input type="number" name="math_captcha" placeholder="?" required
         class="w-24 px-4 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400" />
 </div>
@@ -124,37 +128,57 @@
                 dedicated to transforming passion into professional skills.
             </p>
 
-            <form action="#" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Enter Name"
+            <form action="{{ route('contact.submit') }}" method="POST" class="ajax-contact-form space-y-4">
+                 @csrf
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="name" placeholder="Enter Name"
                         class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400" />
-                    <input type="email" placeholder="Enter Email"
+                    <input type="email" name="email" placeholder="Enter Email"
                         class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400" />
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <input id="phone-mobile" placeholder="Enter mobile number" type="tel"
+                        <input id="phone-mobile" name="phone" placeholder="Enter mobile number" type="tel"
                             class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none" />
                     </div>
                     <select
+                        name="subject"
                         class="w-full px-6 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white text-gray-400">
-                        <option>Select Subject</option>
-                        <option>2D Animation</option>
-                        <option>3D Modeling</option>
+                     <option value="">Select Subject</option>
+    <option value="Web Design">Web Design</option>
+    <option value="Development">Development</option>
                     </select>
                 </div>
 
-                <textarea rows="4" placeholder="Message"
+                <textarea rows="4" name="message" placeholder="Message"
                     class="w-full px-6 resize-none py-4 rounded-3xl border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
+@php
+    $num1 = rand(1, 10);
+    $num2 = rand(1, 10);
+    $correctAnswer = $num1 + $num2;
 
+    $encryptedAnswer = \Illuminate\Support\Facades\Crypt::encryptString((string)$correctAnswer);
+@endphp
+
+<div class="mt-4 flex items-center justify-start gap-4" data-aos="fade-up" data-aos-delay="500">
+    <label class="text-[#000000] font-bold whitespace-nowrap">
+        Security Check: <span class="text-[#CF0037]">{{ $num1 }} + {{ $num2 }}</span> =
+    </label>
+    
+    <input type="hidden" name="captcha_hash" value="{{ $encryptedAnswer }}">
+    
+    <input type="number" name="math_captcha" placeholder="?" required
+        class="w-24 px-4 py-3 rounded-full border border-[#572BC6] shadow-[0_4px_24px_0_rgba(254,54,104,0.19)] focus:outline-none focus:ring-2 focus:ring-purple-400" />
+</div>
                 <div class="mt-20 flex justify-center items-center">
                     <button type="submit"
-                        class="relative flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] text-xl pl-10 pr-6 py-3 rounded-full text-white shadow-lg font-bold hover:scale-105 transition transform">
+                        class="submit-btn relative flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] text-xl pl-10 pr-6 py-3 rounded-full text-white shadow-lg font-bold hover:scale-105 transition transform">
                         <div class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
                             <img src="{{ asset('assets/image/portfolio/Group 160.png') }}" class="w-6" alt="" />
                         </div>
-                        SEND MESSAGE
+                          <span class="btn-text">SEND MESSAGE</span>
+                        <span class="loading-spinner hidden ml-2"><i class="fa-solid fa-spinner fa-spin"></i></span>
                     </button>
                 </div>
             </form>
