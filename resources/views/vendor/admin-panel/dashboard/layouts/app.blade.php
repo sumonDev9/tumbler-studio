@@ -26,12 +26,12 @@
             theme: {
                 extend: {
                     colors: {
-                        glass: "rgba(255, 255, 255, 0.05)",
-                        glassBorder: "rgba(255, 255, 255, 0.1)",
-                        darkBg: "#050505",
-                        lightBg: "#f8fafc",
-                        primary: "#10b981",
-                        secondary: "#0f172a"
+                        // glass: "rgba(255, 255, 255, 0.05)",
+                        // glassBorder: "rgba(255, 255, 255, 0.1)",
+                        // darkBg: "#050505",
+                        // lightBg: "#f8fafc",
+                        // primary: "#10b981",
+                        // secondary: "#0f172a"
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -72,7 +72,7 @@
 
         /* LIGHT MODE (Frosted White) */
        .glass-panel {
-            
+            /* background: #572BC6; */
             background: rgba(255, 255, 255, 0.85); 
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
