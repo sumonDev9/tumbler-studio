@@ -12,12 +12,14 @@ use App\Models\Team;
 use App\Models\VisionGallery;
 use App\Models\Testimonial;
 use App\Models\Brand;
+use Sndpbag\Blog\Models\Blog;
 
 Route::get('/', function () {
     $teams = Team::all();
     $testimonials = Testimonial::latest()->get();
     $brands = Brand::latest()->get();
-    return view('page.home', compact('teams', 'testimonials', 'brands'));
+    $blogs = Blog::where('status', 'published')->latest()->take(4)->get();
+    return view('page.home', compact('teams', 'testimonials', 'brands', 'blogs'));
 });
 
 Route::get('/about-us', function () {
