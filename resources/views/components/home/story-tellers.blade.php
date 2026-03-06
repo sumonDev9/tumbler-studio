@@ -17,7 +17,7 @@
         </div>
 
         <div data-aos="zoom-in-up" data-aos-delay="600" class="pt-4 flex justify-center items-center">
-            <a href="#"
+            <a href="{{ url('/contact-us') }}"
                 class="relative w-fit text-white flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform">
                 <div
                     class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">

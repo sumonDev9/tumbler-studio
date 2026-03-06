@@ -26,12 +26,12 @@
             theme: {
                 extend: {
                     colors: {
-                        // glass: "rgba(255, 255, 255, 0.05)",
-                        // glassBorder: "rgba(255, 255, 255, 0.1)",
-                        // darkBg: "#050505",
-                        // lightBg: "#f8fafc",
-                        // primary: "#10b981",
-                        // secondary: "#0f172a"
+                        glass: "rgba(255, 255, 255, 0.05)",
+                        glassBorder: "rgba(255, 255, 255, 0.1)",
+                        darkBg: "#050505",
+                        lightBg: "#f8fafc",
+                        primary: "#CF0037",
+                        secondary: "#0f172a"
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -63,25 +63,56 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
-        
+
         .dark .glass-card {
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+            .dark .bg-dark{
+             background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+         }
+
+         .dark .bg-blue{
+              background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+         }
+
         /* LIGHT MODE (Frosted White) */
        .glass-panel {
-            /* background: #572BC6; */
             background: rgba(255, 255, 255, 0.85); 
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-          
             border: 1px solid rgba(255, 255, 255, 1);
             border-bottom: 1px solid rgba(200, 200, 200, 0.3);
             box-shadow: 0 8px 32px 0 rgba(100, 100, 111, 0.1); 
         }
 
+        .bg-dark {
+            background: #572BC6;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(100, 100, 111, 0.1); 
+        }
+
+        .bg-blue{
+            background: linear-gradient(135deg, #5158CC 0%, #59D5F3 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(100, 100, 111, 0.1); 
+        }
         .glass-card {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(20px);
@@ -123,13 +154,13 @@
         /* Nav Item Active State */
         .nav-item.active {
             background: linear-gradient(to right, rgba(16, 185, 129, 0.1), rgba(20, 184, 166, 0.1));
-            color: #059669;
-            border-right: 3px solid #10b981;
+            color: #FE3668;
+            border-right: 3px solid #FE3668;
         }
         .dark .nav-item.active {
             background: rgba(255, 255, 255, 0.05);
-            color: #34d399;
-            border-right: 3px solid #34d399;
+            color: #FE3668;
+            border-right: 3px solid #FE3668;
         }
 
         /* Skeleton Animation */
@@ -159,7 +190,7 @@
         }
 
      :root {
-            --primary: {{ session('theme.primary_color', '#10b981') }};
+            --primary: {{ session('theme.primary_color', 'linear-gradient(to right, #FE3668, #CF0037)') }};
             --secondary: {{ session('theme.secondary_color', '#0f172a') }};
             --accent: {{ session('theme.accent_color', '#FFAC00') }};
         }

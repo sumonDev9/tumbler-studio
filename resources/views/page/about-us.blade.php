@@ -7,7 +7,7 @@
     Us
 @endsection
 @section('breadcrumb', 'About')
-
+@section('hero_image', asset('assets/image/team/image 26.png'))
 @section('content')
 
 @include('components.about.our-strength')

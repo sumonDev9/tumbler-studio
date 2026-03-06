@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fdb1fa11402ce880404d0878fa3a1b93",
+    "content-hash": "b3eebae5cad042f06259c355aff21e13",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -5191,6 +5191,54 @@
                 "source": "https://github.com/sndpbag/laravel-admin-panel/tree/v1.1.0"
             },
             "time": "2026-02-14T08:49:43+00:00"
+        },
+        {
+            "name": "sndpbag/blog",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sndpbag/laravel-blog-packege.git",
+                "reference": "bc5b0ec07e8c85bc307875cd8c4314426b3e2072"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sndpbag/laravel-blog-packege/zipball/bc5b0ec07e8c85bc307875cd8c4314426b3e2072",
+                "reference": "bc5b0ec07e8c85bc307875cd8c4314426b3e2072",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^10.0 | ^11.0 || ^12.0",
+                "php": "^8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sndpbag\\Blog\\Providers\\BlogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sndpbag\\Blog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sndp bag",
+                    "email": "sndpbagg@gmail.com"
+                }
+            ],
+            "description": "A simple blog package for Laravel.",
+            "support": {
+                "issues": "https://github.com/sndpbag/laravel-blog-packege/issues",
+                "source": "https://github.com/sndpbag/laravel-blog-packege/tree/v1.0.1"
+            },
+            "time": "2025-11-03T09:35:17+00:00"
         },
         {
             "name": "stevebauman/location",

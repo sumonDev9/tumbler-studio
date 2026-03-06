@@ -43,7 +43,7 @@
     
     <div id="multiUploadField" class="mb-6">
         <label class="block mb-2 text-sm dark:text-gray-300 font-medium text-center">Select Multiple Logos (jpeg/png/jpg/svg/webp)</label>
-        <div class="relative border-2 border-dashed border-white/10 rounded-2xl p-6 text-center hover:border-primary transition cursor-pointer">
+        <div class="relative border-2 border-dashed  rounded-2xl p-6 text-center border-primary transition cursor-pointer">
             <input type="file" name="logos[]" id="logos" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
             <i class="fas fa-images text-3xl text-primary mb-2"></i>
             <p class="text-xs text-slate-400">Click or drag images to upload multiple</p>

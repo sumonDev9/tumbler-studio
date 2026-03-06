@@ -1,4 +1,4 @@
-<header class="glass-panel border-b-0 border-gray-200 dark:border-white/5 flex items-center justify-between px-6 py-3 lg:px-8 z-30 m-4 rounded-xl mb-0 sticky top-4 transition-all duration-300">
+<header class="bg-blue border-b-0 border-gray-200 dark:border-white/5 flex items-center justify-between px-6 py-3 lg:px-8 z-30 m-4 rounded-xl mb-0 sticky top-4 transition-all duration-300">
     
     <div class="flex items-center gap-4">
         <button id="menuBtn" onclick="toggleSidebar()" class="lg:hidden text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
@@ -7,7 +7,7 @@
             </svg>
         </button>
 
-        <h2 class="text-lg font-bold text-gray-800 dark:text-white hidden sm:block">
+        <h2 class="text-lg font-bold text-white hidden sm:block">
             @yield('page-title', 'Your Dashboard')
         </h2>
     </div>
