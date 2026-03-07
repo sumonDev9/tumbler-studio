@@ -61,10 +61,10 @@
                 <div class="mt-10 md:mt-12 flex justify-center lg:justify-start" 
                      data-aos="zoom-in-up" 
                      data-aos-delay="900">
-                    <button class="group bg-gradient-to-r from-[#FF3B6B] to-[#E60045] text-white px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-3">
-                        <div class="bg-white/80 p-1.5 rounded-full">
-                            <img src="{{ asset('assets/image/home/Group 38.png') }}" alt="" />
-                        </div>
+                    <button class="relative text-white uppercase flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform">
+            <div class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
+                <img src="{{ asset('assets/image/login/Group 160.png') }}" class="w-6 h-6" alt="" />
+            </div>
                         APPLY NOW
                     </button>
                 </div>
