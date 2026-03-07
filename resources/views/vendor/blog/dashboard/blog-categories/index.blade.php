@@ -23,7 +23,7 @@
                     <p class="text-sm text-gray-500 dark:text-gray-400">Manage all blog categories and their content</p>
                 </div>
                 <div class="flex flex-col md:flex-row gap-2">
-                    <a href="{{ route('blog-categories.create') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200   hover:from-indigo-700 hover:to-purple-700" style="background-color: var(--primary);">
+                    <a href="{{ route('blog-categories.create') }}" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl text-black dark:text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200   hover:from-indigo-700 hover:to-purple-700" style="background-color: var(--primary);">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                         Add New Category
                     </a>

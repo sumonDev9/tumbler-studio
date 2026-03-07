@@ -97,11 +97,11 @@
             </a>
         </div>
 
-        <a href="{{ url('/contact-us') }}"
+        <a href="{{ url('/login') }}"
             class="hidden relative md:flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform text-white">
             <div
                 class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
-                <img src="{{ asset('assets/image/home/Group 1.png') }}" alt="" />
+                <img src="{{ asset('assets/image/login/icon.png') }}" alt="" />
             </div>
             GET IN TOUCH
         </a>
@@ -166,7 +166,7 @@
         </nav>
 
         <div class="pt-8">
-            <a href="#" class="block text-center bg-gradient-to-r from-[#FE3668] to-[#CF0037] py-3 rounded-full font-bold shadow-lg">
+            <a href="{{ url('/login') }}" class="block text-center bg-gradient-to-r from-[#FE3668] to-[#CF0037] py-3 rounded-full font-bold shadow-lg">
                 GET IN TOUCH
             </a>
         </div>

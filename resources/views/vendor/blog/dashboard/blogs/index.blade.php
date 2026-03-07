@@ -40,7 +40,7 @@
 
  @section('content')
      <!-- Header Banner -->
-     <div class="mb-8 bg-gradient-to-r rounded-xl p-6 text-white shadow-lg" style="background-color: var(--primary);">
+     <div class="mb-8 bg-gradient-to-r rounded-xl p-6 text-black dark:text-white shadow-lg" style="background-color: var(--primary);">
          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
              <div class="flex items-center space-x-4 mb-4 lg:mb-0">
                  <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
@@ -52,7 +52,7 @@
                  </div>
                  <div>
                      <h2 class="text-2xl font-bold mb-1">📝 Blog Management</h2>
-                     <p class="text-blue-100 text-lg">Professional blog content management and organization system</p>
+                     <p class="text-black dark:text-white text-lg">Professional blog content management and organization system</p>
                  </div>
              </div>
 
@@ -60,19 +60,19 @@
              <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                  <div class="bg-white/20 rounded-lg p-3 text-center">
                      <div class="text-2xl font-bold">{{ $totalPosts ?? 0 }}</div>
-                     <div class="text-xs text-blue-100">Total Posts</div>
+                     <div class="text-xs text-black dark:text-white">Total Posts</div>
                  </div>
                  <div class="bg-white/20 rounded-lg p-3 text-center">
                      <div class="text-2xl font-bold">{{ $publishedPosts ?? 0 }}</div>
-                     <div class="text-xs text-blue-100">Published</div>
+                     <div class="text-xs text-black dark:text-white">Published</div>
                  </div>
                  <div class="bg-white/20 rounded-lg p-3 text-center">
                      <div class="text-2xl font-bold">{{ $draftPosts ?? 0 }}</div>
-                     <div class="text-xs text-blue-100">Drafts</div>
+                     <div class="text-xs text-black dark:text-white">Drafts</div>
                  </div>
                  <div class="bg-white/20 rounded-lg p-3 text-center">
                      <div class="text-2xl font-bold">{{ $totalCategories ?? 0 }}</div>
-                     <div class="text-xs text-blue-100">Categories</div>
+                     <div class="text-xs text-black dark:text-white">Categories</div>
                  </div>
              </div>
          </div>
@@ -170,7 +170,7 @@
                              {{-- create blog --}}
 
                              <a href="{{ route('blog.create') }}" style="background-color: var(--primary);"
-                                 class="flex items-center px-3 py-2 text-sm font-medium   text-white border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors">
+                                 class="flex items-center px-3 py-2 text-sm font-medium  text-black dark:text-white border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors">
 
                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5" stroke="currentColor" class="size-6">

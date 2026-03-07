@@ -66,10 +66,11 @@
                 {{-- Verify Button --}}
                 <div class="flex justify-center">
                     <button type="submit"
-                        class="group bg-gradient-to-r from-[#FF3B6B] to-[#E60045] text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-3">
-                        <div class="bg-white/80 p-1.5 rounded-full">
-                            <img src="{{ asset('assets/image/home/Group 38.png') }}" alt="icon" />
-                        </div>
+                           class="hidden relative md:flex items-center gap-2 bg-gradient-to-b from-[#FE3668] to-[#CF0037] pl-10 pr-6 py-3 rounded-full shadow-lg font-bold hover:scale-105 transition transform text-white">
+            <div
+                class="bg-white border-4 border-[#FE3668] absolute -left-2 w-10 h-10 flex justify-center items-center rounded-full">
+                <img src="{{ asset('assets/image/login/icon.png') }}" alt="" />
+            </div>
                         VERIFY & LOGIN
                     </button>
                 </div>
